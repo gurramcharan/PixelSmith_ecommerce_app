@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import {Link} from "react-router-dom"
 import "./Products.css"
 import { FilterContext } from '../../index'
+import {AiOutlineHeart} from "react-icons/ai";
 
 export const Products = ({products}) => {
     const {filteredProducts} = useContext(FilterContext)
@@ -10,6 +11,9 @@ export const Products = ({products}) => {
             {filteredProducts.map((item) => (
                 <div className='products'>
                     <Link to={`/product/${item._id}`}   className='link' >
+                        <div className='wishlist-btn-container'>
+                            <button className='wishlist-btn'><AiOutlineHeart /></button>
+                        </div>
                         <img src={item.img} alt={item.title} width="250px" height="200px"/>
                         <p>{item.title}</p>
                         <p>{item.category}</p>
@@ -18,7 +22,6 @@ export const Products = ({products}) => {
                         <p>Sold By: {item.seller}</p>
                         <div className='flex-row product-btn-container'>
                             <button className='product-btn'>Add to Cart</button>
-                            <button className='product-btn'>Add to Wishlist</button>
                         </div>
                     </Link>
                 </div>

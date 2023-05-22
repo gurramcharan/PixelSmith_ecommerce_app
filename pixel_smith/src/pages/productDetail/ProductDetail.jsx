@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import {useParams, Link} from 'react-router-dom'
 import {FilterContext} from '../../index'
 import "./ProductDetail.css"
-
+import {BsStarFill} from "react-icons/bs"
 // React component
 export const ProductDetail = () => {
     const {productId} = useParams();
@@ -41,7 +41,7 @@ export const ProductDetail = () => {
                                     <div>
                                         <p className="product-category">{item.category}</p>
                                         <p className="product-rating">
-                                            <b>{item.rating}⭐</b>
+                                            <b>{item.rating} <BsStarFill className='rating-icon' /></b>
                                         </p>
                                     </div>
                                     <div>

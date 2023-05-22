@@ -8,6 +8,15 @@
   flex-direction: column;
 }
 
+.filters-clear-btn{
+  color: orange;
+  background-color: white;
+  border: none;
+  font-size: 22px;
+  font-weight:bold;
+  cursor: pointer;
+}
+
 
 .filter-padding-bottom{
   padding-bottom: 1rem;

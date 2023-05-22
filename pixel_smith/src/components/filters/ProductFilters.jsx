@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import "./ProductFilters.css"
 import {FilterContext} from '../..'
+import {GrPowerReset} from "react-icons/gr"
 export const ProductFilters = () => {
     const {
         handleClearButton,
@@ -23,7 +24,7 @@ export const ProductFilters = () => {
                             <label htmlFor="price">
                                 <b>PRICE</b>
                             </label>
-                            <button type="reset" onClick={handleClearButton}>Clear</button>
+                            <button type="reset" onClick={handleClearButton} className='filters-clear-btn'><GrPowerReset/></button>
                         </div>
                         <div>
                             <input
@@ -60,7 +61,9 @@ export const ProductFilters = () => {
                                 step="5000"
                                 value={priceRangeValue}
                                 list='tickmark'
-                                onChange={(e) => {handlePriceRangeInput(e)}}/>
+                                onChange={(e) => {
+                                handlePriceRangeInput(e)
+                            }}/>
                             <datalist id="tickmark">
                                 <option value="10000" label='10000'></option>
                                 <option value="15000"></option>

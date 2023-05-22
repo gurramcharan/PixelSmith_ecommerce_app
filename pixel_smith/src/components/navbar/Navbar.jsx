@@ -1,6 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import "./Navbar.css"
+import {FaRegHeart, FaHeart} from "react-icons/fa";
+import { RiShoppingCart2Fill,RiShoppingCart2Line } from "react-icons/ri";
+import { IoPersonOutline,IoPerson } from "react-icons/io5";
+import { BsHandbag, BsFillHandbagFill } from "react-icons/bs";
 
 export const Navbar= () => {
   return (
@@ -16,19 +20,19 @@ export const Navbar= () => {
                     <NavLink
                         to="/products"
                         className="nav-link"
-                        >Products</NavLink>
+                        >{({ isActive }) => isActive ? <BsFillHandbagFill className='icon-large' />: <BsHandbag className='icon-large'  />}</NavLink>
                     <NavLink
                         to="/wishlist"
                         className="nav-link"
-                        >WishList</NavLink>
+                        >{({ isActive }) => isActive ? <FaHeart className='icon-large' />: <FaRegHeart className='icon-large'  />}</NavLink>
                     <NavLink
                         to="/cart"
                         className="nav-link"
-                        >Cart</NavLink>
+                        >{({ isActive }) => isActive ? <RiShoppingCart2Fill className='icon-large' />: <RiShoppingCart2Line className='icon-large'  />}</NavLink>
                     <NavLink
                         to="/login"
                         className="nav-link"
-                        >Log-In</NavLink>
+                        >{({ isActive }) => isActive ? <IoPerson  className='icon-large' />: <IoPersonOutline className='icon-large'  />}</NavLink>
                 </div>
             </nav>
             <div className='nav-below-container'></div>
