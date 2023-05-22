@@ -1,0 +1,72 @@
+.flex-row{
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.filter-padding-bottom{
+  padding-bottom: 1rem;
+}
+
+.price-clear-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+#price-range{
+  width: 12rem;
+  height: 2rem;
+}
+
+.filters-container {
+  padding: 2rem 3rem 1rem 5rem;
+  width: 12rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: 100vh; /* Set the height to 100% of the viewport height */
+  overflow-y:auto; /* Enable vertical scrolling */
+}
+
+/* Custom scrollbar styles */
+.filters-container::-webkit-scrollbar {
+  width: 5px; /* Set the width of the scrollbar */
+}
+
+.filters-container::-webkit-scrollbar-track {
+  background-color: #ffffff; /* Set the background color of the scrollbar track */
+}
+
+.filters-container::-webkit-scrollbar-thumb {
+  background-color:#198c17; /* Set the color of the scrollbar thumb */
+  border-radius: 5px; /* Add border radius to the scrollbar thumb */
+}
+
+.filters-container::-webkit-scrollbar-thumb:hover {
+  background-color: #a8a2a2; /* Set the color of the scrollbar thumb on hover */
+}
+
+
+@media screen and (max-width:1024px) {
+  .filters-container{
+    flex-direction: row;
+    width: auto;
+    height: auto;
+    margin-bottom: 0.5rem;
+    font-size: 14px;
+  }
+  .filters-container::-webkit-scrollbar {
+    height: 5px; /* Set the height of the scrollbar */
+  }
+
+  .price-clear-container{
+    flex-direction: column;
+  }
+}
+
+

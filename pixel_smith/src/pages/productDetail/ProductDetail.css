@@ -1,0 +1,278 @@
+
+.text-color-red{
+    color:#ff0000;
+}
+
+
+.text-color-green{
+    color:#198c17;
+}
+
+/* Container styles */
+.product-container {
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+.image-content-container{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+  /* Go Back link styles */
+  .go-back-link {
+    align-self: flex-start;
+    margin-bottom: 5px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  /* Product details styles */
+  .product-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 4px;
+    background-color: #ffffff;
+  }
+  
+  /* Product image styles */
+  .product-image {
+    display: flex;
+    
+    margin-bottom: 20px;
+  }
+  
+  .product-image img{
+    
+    max-width: 100%;
+    max-height: 400px;
+  }
+  
+  /* Product info styles */
+  .product-info {
+    width: 100%;
+  }
+  
+  .product-title {
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .product-category-color-container{
+    display: flex;
+    /* flex-direction: column; */
+    gap:0rem;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  
+  .product-category {
+    font-size: 16px;
+    color: #666666;
+    margin-bottom: 5px;
+  }
+
+  .product-color,.product-rating{
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .product-prices {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 10px;
+  }
+  
+  .discount-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #198c17;
+    margin-right: 10px;
+  }
+  
+  .original-price-line-through{
+    font-size: 20px;
+    color: #746c6c;
+    text-decoration: line-through;
+  }
+
+  .original-price{
+    font-size: 24px;
+    font-weight: bold;
+    color: #198c17;
+  }
+  
+  .discount-percentage {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff0000;
+  }
+
+  .individual-product-btn-container{
+    justify-content: space-around;
+  }
+
+  .product-btn-individual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.5rem;
+    width: 9rem;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4c46fc;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.product-btn-individual:hover {
+    background-color: #0849ec;
+}
+
+.product-btn-individual:focus {
+    outline: none;
+}
+  
+
+  .product-company,
+  .product-seller,
+  .product-warranty {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .product-feature {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  /* Product stock details styles */
+  .product-stock-details {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  
+  .stock-status {
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  
+  .fast-delivery,
+  .table-mount,
+  .wall-mount {
+    font-size: 14px;
+    margin-right: 10px;
+    color: #00cc00;
+  }
+  
+  /* Product options styles */
+  .product-options {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .option-tilt,
+  .option-rotation,
+  .option-adjustable {
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 768px) {
+    .product-details {
+      flex-direction: column;
+      align-items: center;
+    }
+    .image-content-container{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .product-image {
+      order: 1;
+      margin-bottom: 10px;
+    }
+  
+    .product-info {
+      order: 2;
+    }
+  
+    .product-title {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+  
+    .product-category {
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+  
+    .product-prices {
+      margin-bottom: 5px;
+    }
+  
+    .discount-price {
+      font-size: 16px;
+      margin-right: 5px;
+    }
+  
+    .original-price {
+        font-size: 14px;
+        text-decoration: line-through;
+      }
+  
+      .discount-percentage {
+        font-size: 12px;
+      }
+  
+      .product-color,
+      .product-company,
+      .product-seller,
+      .product-rating,
+      .product-warranty {
+        font-size: 12px;
+        margin-bottom: 3px;
+      }
+  
+      .product-feature {
+        font-size: 12px;
+        margin-bottom: 3px;
+      }
+  
+      .product-stock-details {
+        margin-bottom: 5px;
+      }
+  
+      .stock-status,
+      .fast-delivery,
+      .table-mount,
+      .wall-mount {
+        font-size: 12px;
+        margin-right: 5px;
+      }
+  
+      .option-tilt,
+      .option-rotation,
+      .option-adjustable {
+        font-size: 12px;
+        margin-right: 5px;
+      }
+    }
+  
