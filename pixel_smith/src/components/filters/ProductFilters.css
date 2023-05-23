@@ -9,14 +9,17 @@
 }
 
 .filters-clear-btn{
-  color: orange;
+  color: red;
   background-color: white;
   border: none;
-  font-size: 22px;
+  font-size: 20px;
   font-weight:bold;
   cursor: pointer;
 }
 
+.filters-clear-btn:hover{
+  color:rgb(176, 8, 8);
+}
 
 .filter-padding-bottom{
   padding-bottom: 1rem;
@@ -68,6 +71,9 @@
     height: auto;
     margin-bottom: 0.5rem;
     font-size: 14px;
+  }
+  .filters-clear-btn{
+    font-size: 16px;
   }
   .filters-container::-webkit-scrollbar {
     height: 5px; /* Set the height of the scrollbar */

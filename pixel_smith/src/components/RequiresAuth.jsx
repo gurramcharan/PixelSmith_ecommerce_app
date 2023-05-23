@@ -3,11 +3,11 @@ import { Navigate, useLocation } from "react-router";
 import { AuthContext } from "..";
 
 export function RequiresAuth({ children }) {
-  let location = useLocation();
-  const { isLoggedIn } = useContext(AuthContext);
-  return isLoggedIn ? (
+  const {authState} = useContext(AuthContext);
+  const location = useLocation();
+  return authState.token ? (
     children
   ) : (
-    <Navigate to="/notlogin" state={{ from: location }} />
+    <Navigate to="/login" state={{ from: location }} />
   );
 }

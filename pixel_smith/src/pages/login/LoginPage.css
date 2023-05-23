@@ -13,6 +13,8 @@
     height: auto;
     align-items: center;
   }
+
+  
   
   .login-h1{
     font-size: 50px;
@@ -61,6 +63,7 @@
     font-size: 16px;
     border: none;
     border-radius: 5px;
+    margin-top: 1rem;
     background-color: #4266f7;
     color: #ffffff;
     cursor: pointer;
@@ -74,6 +77,10 @@
   .button:focus {
     outline: none;
   }
+
+
+
+  
 
   @media screen and (max-width: 1024px){
     .container{

@@ -1,5 +1,6 @@
 import {createContext, useContext, useReducer, useState} from "react";
 import {ApiContext} from "../index"
+// import { FilterReducer } from "../reducers/FilterReducer";
 // import { categories } from "../backend/db/categories"; import {
 // FilterProductsReducer } from "../reducers/FilterProductsReducer";
 
@@ -11,7 +12,6 @@ export const FilterProvider = ({children}) => {
         setSearchBarValue] = useState("");
     const [priceRangeValue,
         setPriceRangeValue] = useState(70000);
-    const allMonitors = product
     const initialFilters = {
         search: "",
         price: "",
@@ -124,6 +124,7 @@ export const FilterProvider = ({children}) => {
                 }
             case "CLEAR_ALL":
                 setPriceRangeValue(70000);
+                // setAllMonitors(product)
                 return {
                     ...state,
                     search:"",
@@ -139,7 +140,7 @@ export const FilterProvider = ({children}) => {
             default:
                 return state
         }
-
+    
     }
 
     const handleClearButton = () => {
@@ -186,7 +187,7 @@ export const FilterProvider = ({children}) => {
         dispatch] = useReducer(FilterReducer, initialFilters)
 
 
-    const searchFilter = state.search.length > 0 ? allMonitors.filter((item) => item.title.toLowerCase().includes(state.search.toLowerCase())) : allMonitors;
+    const searchFilter = state.search.length > 0 ? product.filter((item) => item.title.toLowerCase().includes(state.search.toLowerCase())) : product;
 
     const sortByPriceFilter = state.price === "asc" ? searchFilter.sort((a,b) => a.price - b.price) : state.price === "desc" ? searchFilter.sort((a,b) => b.price - a.price) : searchFilter; 
 

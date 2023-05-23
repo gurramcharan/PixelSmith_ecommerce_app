@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import "./ProductFilters.css"
 import {FilterContext} from '../..'
-import {GrPowerReset} from "react-icons/gr"
+import {FaTrash} from "react-icons/fa"
 export const ProductFilters = () => {
     const {
         handleClearButton,
@@ -24,7 +24,7 @@ export const ProductFilters = () => {
                             <label htmlFor="price">
                                 <b>PRICE</b>
                             </label>
-                            <button type="reset" onClick={handleClearButton} className='filters-clear-btn'><GrPowerReset/></button>
+                            <button type="reset" onClick={handleClearButton} className='filters-clear-btn'><FaTrash/></button>
                         </div>
                         <div>
                             <input

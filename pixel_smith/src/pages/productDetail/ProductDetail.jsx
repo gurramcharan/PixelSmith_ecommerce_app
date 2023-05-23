@@ -3,6 +3,7 @@ import {useParams, Link} from 'react-router-dom'
 import {FilterContext} from '../../index'
 import "./ProductDetail.css"
 import {BsStarFill} from "react-icons/bs"
+import {ImCross} from "react-icons/im"
 // React component
 export const ProductDetail = () => {
     const {productId} = useParams();
@@ -20,7 +21,7 @@ export const ProductDetail = () => {
             {filterProduct.map((item) => (
                 <div key={item._id} className="product-details">
                     <Link to="/products" className="go-back-link">
-                        Go Back
+                        <ImCross />
                     </Link>
 
                     <div className='image-content-container'>

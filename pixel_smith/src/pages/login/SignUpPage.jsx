@@ -12,7 +12,7 @@ export const SignUpPage = () => {
                 <div className='flex-column'>
 
                     <label htmlFor="email" className='label'>Enter your Email*</label>
-                    <input type="email" name="email" id="login-input-email" className='login-input' placeholder='Email' />
+                    <input type="email" name="email" id="login-input-email" className='login-input' placeholder='Email'/>
                 </div>
                 <div className='flex-column'>
 
@@ -41,7 +41,7 @@ export const SignUpPage = () => {
                     <input
                         type="password"
                         name="Re-password"
-                        id="login-input-password"
+                        id="login-input-repassword"
                         className='login-input'
                         placeholder='Re-enter Password' 
                         />

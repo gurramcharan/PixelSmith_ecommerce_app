@@ -29,9 +29,10 @@
 }
   /* Go Back link styles */
   .go-back-link {
-    align-self: flex-start;
+    align-self: flex-end;
+    font-size: large;
     margin-bottom: 5px;
-    color: #007bff;
+    color: #e78925;
     text-decoration: none;
   }
   

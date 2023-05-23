@@ -11,9 +11,12 @@ export const users = [
     _id: uuid(),
     firstName: "Adarsh",
     lastName: "Balika",
-    email: "adarshbalika@gmail.com",
-    password: "adarshbalika",
+    email: "charan@gmail.com",
+    password: "12345",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
 ];
+
+//adarshbalika@gmail.com
+//adarshbalika
