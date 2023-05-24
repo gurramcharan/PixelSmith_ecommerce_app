@@ -5,10 +5,10 @@ import {LandingPage} from "./pages/landing/LandingPage";
 import {ProductPage} from "./pages/products/ProductPage";
 import {WishlistPage} from "./pages/wishlist/WishlistPage";
 import {CartPage} from "./pages/cart/CartPage";
-import {LoginPage} from "./pages/login/LoginPage";
-import {SignUpPage} from "./pages/login/SignUpPage";
+import {LoginPage} from "./pages/login-signup/LoginPage";
+import {SignUpPage} from "./pages/login-signup/signup/SignUpPage";
 import { RequiresAuth } from "./components/RequiresAuth";
-import { NotLoginPage } from "./pages/login/NotLoginPage";
+import { NotLoginPage } from "./pages/login-signup/NotLoginPage";
 import { ProductDetail } from "./pages/productDetail/ProductDetail";
 import { Navbar } from "./components/navbar/Navbar";
 
