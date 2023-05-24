@@ -8,6 +8,8 @@ export const FilterContext = createContext();
 
 export const FilterProvider = ({children}) => {
     const {product} = useContext(ApiContext)
+    const pd = product
+    
     const [searchBarValue,
         setSearchBarValue] = useState("");
     const [priceRangeValue,
@@ -125,7 +127,7 @@ export const FilterProvider = ({children}) => {
             case "CLEAR_ALL":
                 setPriceRangeValue(70000);
                 // setAllMonitors(product)
-                return {
+                return ({
                     ...state,
                     search:"",
                     price: "",
@@ -136,7 +138,7 @@ export const FilterProvider = ({children}) => {
                     brand: [],
                     mountType: [],
                     color: []
-                }
+                })
             default:
                 return state
         }
@@ -187,7 +189,7 @@ export const FilterProvider = ({children}) => {
         dispatch] = useReducer(FilterReducer, initialFilters)
 
 
-    const searchFilter = state.search.length > 0 ? product.filter((item) => item.title.toLowerCase().includes(state.search.toLowerCase())) : product;
+    const searchFilter = state.search.length > 0 ? pd.filter((item) => item.title.toLowerCase().includes(state.search.toLowerCase())) : pd;
 
     const sortByPriceFilter = state.price === "asc" ? searchFilter.sort((a,b) => a.price - b.price) : state.price === "desc" ? searchFilter.sort((a,b) => b.price - a.price) : searchFilter; 
 
@@ -314,7 +316,7 @@ export const FilterProvider = ({children}) => {
             handleBrandInput,
             handleMountTypeInput,
             handleColorInput,
-            filteredProducts
+            filteredProducts,
         }}>
             {children}
         </FilterContext.Provider>

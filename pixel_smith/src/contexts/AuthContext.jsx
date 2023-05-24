@@ -7,7 +7,7 @@ export const AuthContext = createContext({ isLoggedIn: false });
 export const AuthProvider = ({children}) => {
   const initialAuthState = {
     user:{},
-    token:"",
+    login:"",
   }
   const [authState,authDispatch] = useReducer(AuthReducer,initialAuthState)
   const[errorMessage,setErrorMessage] = useState("")
@@ -43,15 +43,48 @@ export const AuthProvider = ({children}) => {
     }
   }
 
+  const signUpUser = async (signupData) => {
+    try {
+      const {email,password,firstname,lastname} = signupData;
+      console.log(signupData)
+      const config = {
+        method:"POST",
+        body:JSON.stringify({
+          email: email,
+          password: password,
+          firstName: firstname,
+          lastName: lastname
+        }),
+      }
+
+      const res = await fetch("/api/auth/signup",config);
+      const resJson = await res.json()
+      const {createdUser, encodedToken} = resJson
+
+      if (res.status === 201) {
+        // localStorage.setItem("token",JSON.stringify({token: encodedToken}));
+        // localStorage.setItem("user", JSON.stringify({user:createdUser}))
+          authDispatch({type:"setUser",payload:createdUser})
+          authDispatch({type:"setToken",payload:encodedToken})
+
+          navigate("/login")
+      }
+
+    } catch (error) {
+      console.log("Error in Login user", error)
+    }
+  }
+
   const userLogout = () => {
     localStorage.removeItem("token")
     localStorage.removeItem("user")
     authDispatch({type:"setUser",payload:{}})
     authDispatch({type:"setToken", payload:""})
+
   }
 
   return(
-    <AuthContext.Provider value={{authState,userLogged,userLogout,errorMessage}}>
+    <AuthContext.Provider value={{authState,userLogged,userLogout,signUpUser,errorMessage}}>
       {children}
     </AuthContext.Provider>
   )

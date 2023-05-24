@@ -3,7 +3,7 @@ export const AuthReducer = (state, action) => {
     case "setUser":
       return { ...state, user: action.payload };
     case "setToken":
-      return { ...state, token: action.payload };
+      return { ...state, login: action.payload };
 
     default:
       return state;
