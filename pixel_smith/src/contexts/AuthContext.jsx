@@ -1,6 +1,7 @@
-import { createContext, useReducer, useState} from "react";
+import { createContext, useEffect, useReducer, useState} from "react";
 import { AuthReducer } from "../reducers/AuthReducer";
 import { useLocation, useNavigate } from "react-router-dom";
+// import { getCartProducts } from "../utils/CartUtil";
 
 export const AuthContext = createContext({ isLoggedIn: false });
 
@@ -74,6 +75,8 @@ export const AuthProvider = ({children}) => {
       console.log("Error in Login user", error)
     }
   }
+
+
 
   const userLogout = () => {
     localStorage.removeItem("token")
