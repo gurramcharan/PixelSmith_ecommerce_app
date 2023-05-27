@@ -430,4 +430,39 @@ return (
 // login Page css:
 
 
+
+useEffect(() => {
+  const setCartProuct = async () => {
+    try {
+      const cartResponse = await getCartProducts(encodedToken);
+      const cartJSonResponse = await cartResponse.json();
+      if (cartResponse.status === 200) {
+        productDispatch({ type: "setCart", payload: cartJSonResponse.cart });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
+  const clearCart = () => {
+    productDispatch({ type: "setCart", payload: [] });
+  };
+
+  getProducts();
+  getCategories();
+  !authState?.token && clearCart();
+  authState?.token && setCartProuct();
+}, [productDispatch, authState?.token, encodedToken]);
+
+
+const getCartProducts = async (encodedToken) => {
+  try {
+    const res = await fetch("/api/user/cart", {
+      headers: { authorization: encodedToken },
+    });
+    if (res.status === 200) {
+      return res;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
