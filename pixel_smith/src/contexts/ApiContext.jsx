@@ -1,16 +1,28 @@
-import React, {createContext, useEffect, useState} from 'react'
+import React, {createContext, useContext, useEffect, useReducer} from 'react'
+import { productReducer } from '../reducers/ProductReducer'
+import { AuthContext } from './AuthContext'
+import { getCartProducts } from '../utils/CartUtil'
 
 export const ApiContext = createContext()
 
 export const ApiProvider = ({children}) => {
-    const [product,setProducts] = useState([])
-    const [categories,setCategories] = useState([])
+   const {authState} = useContext(AuthContext);
+    const productInitialState = {
+        products:[],
+        cart:[],
+        categories:[],
+        wishlist:[],
+    }
     const token = localStorage.getItem("token")
+
+    const [productState,productDispatch] = useReducer(productReducer,productInitialState)
+
     const extractProducts =async () => {
         try {
             const res = await fetch("/api/products")
             const {products} =await res.json()
-            setProducts(products)
+            // setProducts(products)
+            productDispatch({type:"setProducts",payload: products})
         } catch (error) {
             console.error(error)
         }
@@ -19,34 +31,39 @@ export const ApiProvider = ({children}) => {
         try {
             const res = await fetch("/api/categories")
             const {categories} =await res.json()
-            setCategories(categories)
+            // setCategories(categories)
+            productDispatch({type:"setCategories",payload: categories})
         } catch (error) {
             console.error(error)
         }
     }
 
-    const extractCart = async (encodedToken) => {
-        try {
-          const res = await fetch("/api/user/cart", {
-            headers: { authorization: encodedToken },
-          });
-          console.log(await res.json())
-          if (res.status === 200) {
-            console.log("hehe")
+      useEffect(() => {
+        const setCartProduct = async () => {
+          try {
+            const cartResponse = await getCartProducts(token);
+            const cartJSonResponse = await cartResponse.json();
+            console.log(cartResponse)
+            console.log(cartJSonResponse,"json...")
+            if (cartResponse.status === 200) {
+              productDispatch({ type: "setCart", payload: cartJSonResponse.cart });
+            }
+          } catch (err) {
+            console.log(err);
           }
-        } catch (err) {
-          console.log(err);
-        }
-      };
-
-    useEffect(() => {
-        extractProducts()
-        extractCategories()
-        extractCart(token)
-    },[])
+        };
+        const clearCart = () => {
+          productDispatch({ type: "setCart", payload: [] });
+        };
+    
+        extractProducts();
+        extractCategories();
+        !authState?.token && clearCart();
+        authState?.token && setCartProduct();
+      }, [productDispatch, authState?.token, token]);
 
     return (
-        <ApiContext.Provider value={{ product, categories}}>
+        <ApiContext.Provider value={{ productState, productDispatch}}>
             {children}
         </ApiContext.Provider>
     )

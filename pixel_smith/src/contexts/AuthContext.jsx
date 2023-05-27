@@ -1,14 +1,16 @@
-import { createContext, useEffect, useReducer, useState} from "react";
+import { createContext, useContext, useReducer, useState} from "react";
 import { AuthReducer } from "../reducers/AuthReducer";
 import { useLocation, useNavigate } from "react-router-dom";
 // import { getCartProducts } from "../utils/CartUtil";
+import {ApiContext} from "../index"
 
 export const AuthContext = createContext({ isLoggedIn: false });
 
 export const AuthProvider = ({children}) => {
+  const {productDispatch} = useContext(ApiContext)
   const initialAuthState = {
-    user:{},
-    login:"",
+    user:localStorage.getItem("user"),
+    token:localStorage.getItem("token"),
   }
   const [authState,authDispatch] = useReducer(AuthReducer,initialAuthState)
   const[errorMessage,setErrorMessage] = useState("")
@@ -16,6 +18,7 @@ export const AuthProvider = ({children}) => {
   const navigate = useNavigate();
 
   const userLogged = async (loginData) => {
+    console.log(initialAuthState)
     if(loginData.email && loginData.password !== ""){
       try {
         const config={
@@ -24,6 +27,7 @@ export const AuthProvider = ({children}) => {
         }
         const res = await fetch("/api/auth/login", config);
         const resJson = await res.json();
+        console.log(resJson)
         if (res.status === 200) {
           localStorage.setItem("user", JSON.stringify(resJson?.foundUser));
           localStorage.setItem("token",resJson?.encodedToken);
@@ -47,7 +51,6 @@ export const AuthProvider = ({children}) => {
   const signUpUser = async (signupData) => {
     try {
       const {email,password,firstname,lastname} = signupData;
-      console.log(signupData)
       const config = {
         method:"POST",
         body:JSON.stringify({
@@ -63,10 +66,12 @@ export const AuthProvider = ({children}) => {
       const {createdUser, encodedToken} = resJson
 
       if (res.status === 201) {
-        // localStorage.setItem("token",JSON.stringify({token: encodedToken}));
-        // localStorage.setItem("user", JSON.stringify({user:createdUser}))
           authDispatch({type:"setUser",payload:createdUser})
           authDispatch({type:"setToken",payload:encodedToken})
+
+          // Need to be changed later
+          // localStorage.setItem("user", JSON.stringify(createdUser));
+          // localStorage.setItem("token",encodedToken);
 
           navigate("/login")
       }
@@ -83,6 +88,7 @@ export const AuthProvider = ({children}) => {
     localStorage.removeItem("user")
     authDispatch({type:"setUser",payload:{}})
     authDispatch({type:"setToken", payload:""})
+    productDispatch({ type: "setCart", payload: [] });
 
   }
 

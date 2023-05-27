@@ -7,8 +7,8 @@ import {ApiContext} from "../index"
 export const FilterContext = createContext();
 
 export const FilterProvider = ({children}) => {
-    const {product} = useContext(ApiContext)
-    const pd = product
+    const {productState} = useContext(ApiContext)
+    // const pd = productState.products
     
     const [searchBarValue,
         setSearchBarValue] = useState("");
@@ -188,8 +188,9 @@ export const FilterProvider = ({children}) => {
     const [state,
         dispatch] = useReducer(FilterReducer, initialFilters)
 
+    const allItems = productState.products
 
-    const searchFilter = state.search.length > 0 ? pd.filter((item) => item.title.toLowerCase().includes(state.search.toLowerCase())) : pd;
+    const searchFilter = state.search.length > 0 ? allItems.filter((item) => item.title.toLowerCase().includes(state.search.toLowerCase())) : allItems;
 
     const sortByPriceFilter = state.price === "asc" ? searchFilter.sort((a,b) => a.price - b.price) : state.price === "desc" ? searchFilter.sort((a,b) => b.price - a.price) : searchFilter; 
 
