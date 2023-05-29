@@ -2,23 +2,41 @@ import React, {useContext} from 'react'
 import {useNavigate, Link} from "react-router-dom"
 import "./Products.css"
 import {ApiContext, FilterContext} from '../../index'
-import {AiOutlineHeart} from "react-icons/ai";
+import {AiOutlineHeart, AiFillHeart} from "react-icons/ai";
 import {addToCart, productCheck} from '../../utils/CartUtil';
-import {BiCartDownload,BiCartAdd} from "react-icons/bi"
+import {addToWishlist, removeProductFromWishlist, wishlistCheck} from "../../utils/WishlistUtil"
+import {BiCartDownload, BiCartAdd} from "react-icons/bi"
 
 export const Products = () => {
     const {filteredProducts} = useContext(FilterContext)
     const {productState, productDispatch} = useContext(ApiContext)
-    const isLogged = localStorage.getItem("token")?.length > 0
+    const isLogged = localStorage.getItem("token")
+        ?.length > 0
 
     const navigate = useNavigate()
 
     const addToCartHandler = (product) => {
         if (isLogged) {
-            if (productCheck(productState?.cart, product?._id)) {
+            if (productCheck(productState
+                ?.cart, product
+                ?._id)) {
                 navigate("/cart");
             } else {
                 addToCart(product, productDispatch)
+            }
+        } else {
+            navigate("/login")
+        }
+    }
+
+    const addToWishlistHandler = (product) => {
+        if (isLogged) {
+            if (wishlistCheck(productState
+                ?.wishlist, product
+                ?._id)) {
+                removeProductFromWishlist(productDispatch,product._id)
+            } else {
+                addToWishlist(product, productDispatch)
             }
         } else {
             navigate("/login")
@@ -29,20 +47,29 @@ export const Products = () => {
         <div className='products-container'>
             {filteredProducts.map((item) => (
                 <div className='products' key={item._id}>
-                    {/* <Link to={`/product/${item._id}`} className='link'> */}
                     <div className='link'>
                         <div className='wishlist-btn-container'>
-                            <button className='wishlist-btn'><AiOutlineHeart/></button>
+                            <button className='wishlist-btn' onClick={() => addToWishlistHandler(item)}>
+                                {wishlistCheck(productState
+                                    ?.wishlist, item
+                                    ?._id)
+                                    ? (<AiFillHeart className='wishlist-filled-icon' />)
+                                    : (<AiOutlineHeart/>)}
+                            </button>
                         </div>
-                        <img src={item.img} alt={item.title} width="250px" height="200px"/>
-                        <p>{item.title}</p>
-                        <p>{item.category}</p>
-                        <p>Rs. {item.price}</p>
-                        <p>Brand: {item.company}</p>
-                        <p>Sold By: {item.seller}</p>
+                        <Link to={`/product/${item._id}`} className='link'>
+                            <img src={item.img} alt={item.title} width="250px" height="200px"/>
+                            <p>{item.title}</p>
+                            <p>{item.category}</p>
+                            <p>Rs. {item.price}</p>
+                            <p>Brand: {item.company}</p>
+                            <p>Sold By: {item.seller}</p>
+                        </Link>
                         <div className='flex-row product-btn-container'>
                             <button className="product-btn" onClick={() => addToCartHandler(item)}>
-                                {productCheck(productState?.cart, item?._id)
+                                {productCheck(productState
+                                    ?.cart, item
+                                    ?._id)
                                     ? (
                                         <p className="row">
                                             <BiCartDownload className="cardAddIcon"/>
@@ -55,11 +82,9 @@ export const Products = () => {
                                             Add To Cart
                                         </p>
                                     )}
-                                    {/* {productState?.cart?.includes(item) ? (<Link to="/cart">Go to Cart</Link>): ("Add to Cart")} */}
                             </button>
                         </div>
-                        </div>
-                    {/* </Link> */}
+                    </div>
                 </div>
             ))}
         </div>

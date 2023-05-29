@@ -2,6 +2,7 @@ import React, {createContext, useContext, useEffect, useReducer} from 'react'
 import { productReducer } from '../reducers/ProductReducer'
 import { AuthContext } from './AuthContext'
 import { getCartProducts } from '../utils/CartUtil'
+import { getWishlistProducts } from '../utils/WishlistUtil'
 
 export const ApiContext = createContext()
 
@@ -39,27 +40,35 @@ export const ApiProvider = ({children}) => {
     }
 
       useEffect(() => {
-        const setCartProduct = async () => {
+        const setCartAndWishlistProduct = async () => {
           try {
             const cartResponse = await getCartProducts(token);
-            const cartJSonResponse = await cartResponse.json();
-            console.log(cartResponse)
-            console.log(cartJSonResponse,"json...")
-            if (cartResponse.status === 200) {
-              productDispatch({ type: "setCart", payload: cartJSonResponse.cart });
+            const wishlistResponse = await getWishlistProducts(token);
+            const cartJsonResponse = await cartResponse.json();
+            const wishlistJsonResponse = await wishlistResponse.json();
+            console.log(wishlistResponse)
+            console.log(wishlistJsonResponse)
+            // console.log(cartResponse)
+            // console.log(cartJsonResponse,"json...")
+            if (cartResponse && cartResponse.status === 200) {
+              productDispatch({ type: "setCart", payload: cartJsonResponse.cart });
+            }
+            if (wishlistResponse && wishlistResponse.status === 200) {
+              productDispatch({ type: "setWishlist", payload: cartJsonResponse.cart });
             }
           } catch (err) {
             console.log(err);
           }
         };
-        const clearCart = () => {
+        const clearCartAndWishlist = () => {
           productDispatch({ type: "setCart", payload: [] });
+          productDispatch({ type: "setWishlist", payload: [] });
         };
     
         extractProducts();
         extractCategories();
-        !authState?.token && clearCart();
-        authState?.token && setCartProduct();
+        !authState?.token && clearCartAndWishlist();
+        authState?.token && setCartAndWishlistProduct();
       }, [productDispatch, authState?.token, token]);
 
     return (

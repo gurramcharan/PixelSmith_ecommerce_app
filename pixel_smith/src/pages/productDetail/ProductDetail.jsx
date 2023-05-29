@@ -1,12 +1,16 @@
 import React, {useContext} from 'react'
-import {useParams, Link} from 'react-router-dom'
-import {FilterContext} from '../../index'
+import {useParams, Link, useNavigate} from 'react-router-dom'
+import {ApiContext, FilterContext} from '../../index'
 import "./ProductDetail.css"
 import {BsStarFill} from "react-icons/bs"
 import {ImCross} from "react-icons/im"
+import {BiCartDownload, BiCartAdd} from "react-icons/bi"
+import {addToCart, productCheck} from '../../utils/CartUtil';
+
 // React component
 export const ProductDetail = () => {
     const {productId} = useParams();
+    const {productState, productDispatch} = useContext(ApiContext)
     const {filteredProducts} = useContext(FilterContext);
     const filterProduct = filteredProducts.filter((item) => item._id === productId);
 
@@ -16,12 +20,31 @@ export const ProductDetail = () => {
         return Math.round(discountPercentage);
     }
 
+    const isLogged = localStorage.getItem("token")
+        ?.length > 0
+
+    const navigate = useNavigate()
+
+    const addToCartHandler = (product) => {
+        if (isLogged) {
+            if (productCheck(productState
+                ?.cart, product
+                ?._id)) {
+                navigate("/cart");
+            } else {
+                addToCart(product, productDispatch)
+            }
+        } else {
+            navigate("/login")
+        }
+    }
+
     return (
         <div className="product-container">
             {filterProduct.map((item) => (
                 <div key={item._id} className="product-details">
                     <Link to="/products" className="go-back-link">
-                        <ImCross />
+                        <ImCross/>
                     </Link>
 
                     <div className='image-content-container'>
@@ -29,7 +52,25 @@ export const ProductDetail = () => {
                             <div className="product-image flex-column">
                                 <img src={item.img} alt={item.title}/>
                                 <div className='flex-row individual-product-btn-container'>
-                                    <button className='product-btn-individual'>Add to Cart</button>
+                                    <button
+                                        className="product-btn-individual"
+                                        onClick={() => addToCartHandler(item)}>
+                                        {productCheck(productState
+                                            ?.cart, item
+                                            ?._id)
+                                            ? (
+                                                <p className="row">
+                                                    <BiCartDownload className="cardAddIcon"/>
+                                                    Go To Cart
+                                                </p>
+                                            )
+                                            : (
+                                                <p className="row">
+                                                    <BiCartAdd className="cardAddIcon"/>
+                                                    Add To Cart
+                                                </p>
+                                            )}
+                                    </button>
                                     <button className='product-btn-individual'>Add to Wishlist</button>
                                 </div>
                             </div>
@@ -42,7 +83,8 @@ export const ProductDetail = () => {
                                     <div>
                                         <p className="product-category">{item.category}</p>
                                         <p className="product-rating">
-                                            <b>{item.rating} <BsStarFill className='rating-icon' /></b>
+                                            <b>{item.rating}
+                                                <BsStarFill className='rating-icon'/></b>
                                         </p>
                                     </div>
                                     <div>
@@ -80,7 +122,6 @@ export const ProductDetail = () => {
                                             <p className="original-price">{item.price}</p>
                                         )}
                                 </div>
-                                
 
                                 <hr/>
 

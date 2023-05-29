@@ -82,7 +82,6 @@ export const AuthProvider = ({children}) => {
   }
 
 
-
   const userLogout = () => {
     localStorage.removeItem("token")
     localStorage.removeItem("user")
