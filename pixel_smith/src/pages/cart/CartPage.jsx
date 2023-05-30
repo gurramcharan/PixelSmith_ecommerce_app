@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { ApiContext } from '../../contexts/ApiContext'
 import { handleProductQuantity, removeProductFromCart } from '../../utils/CartUtil'
+import {Link} from "react-router-dom"
 
 export const CartPage = () => {
   const {productState, productDispatch} = useContext(ApiContext)
@@ -17,6 +18,7 @@ export const CartPage = () => {
           <button onClick={() => removeProductFromCart(productDispatch,item._id)}>Remove</button>
         </li>
       ))}
+      <Link to="/address">CheckOut</Link>
     </div>
   )
 }

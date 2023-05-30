@@ -18,7 +18,6 @@ export const AuthProvider = ({children}) => {
   const navigate = useNavigate();
 
   const userLogged = async (loginData) => {
-    console.log(initialAuthState)
     if(loginData.email && loginData.password !== ""){
       try {
         const config={

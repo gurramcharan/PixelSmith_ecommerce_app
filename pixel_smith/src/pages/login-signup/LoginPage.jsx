@@ -6,6 +6,7 @@ import {AuthContext} from '../../index';
 export const LoginPage = () => {
     const [userData,
         setUserData] = useState({email: "", password: ""})
+    const testCreds = {email:"charan@gmail.com",password:"12345"}
     const {userLogged, userLogout, errorMessage} = useContext(AuthContext);
 
     const isToken = localStorage.getItem("token")
@@ -73,7 +74,7 @@ export const LoginPage = () => {
                             : "none"
                     }}>Login</button>
                 </div>
-                <button className='button' onClick={userLogout}>Test User</button>
+                <button className='button' onClick={() => userLogged(testCreds)}>Test User</button>
                 <p>Don't have an account?
                     <Link to="/signup">Create Account</Link>
                 </p>
