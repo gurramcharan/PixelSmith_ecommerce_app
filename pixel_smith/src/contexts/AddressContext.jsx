@@ -2,11 +2,7 @@ import {createContext, useReducer, useState} from "react";
 import {AddressReducer} from "../reducers/AddressReducer";
 export const AddressContext = createContext()
 
-export const AddressProvider = ({children}) => {
-    // let addresses = ["5-1-172,Usman saheb pet, Nellore,524002"]
-    const [addresses,
-        setAddresses] = useState(["5-1-172,Usman saheb pet, Nellore,524002"])
-
+export const AddressProvider = ({children}) => {    
     const initialAddress = [
         {
             id: 1,
@@ -19,6 +15,8 @@ export const AddressProvider = ({children}) => {
             phno:"1234567890",
         }
     ]
+
+    const [selectAdd,setSelectedAdd] = useState([])
 
     const [AddressState,
         AddressDispatch] = useReducer(AddressReducer, initialAddress)
@@ -33,7 +31,9 @@ export const AddressProvider = ({children}) => {
             value={{
             AddressState,
             handleNewAddress,
-            AddressDispatch
+            AddressDispatch,
+            selectAdd,
+            setSelectedAdd
         }}>
             {children}
         </AddressContext.Provider>

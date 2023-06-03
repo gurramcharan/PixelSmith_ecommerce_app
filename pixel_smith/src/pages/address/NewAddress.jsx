@@ -1,48 +1,46 @@
-import React, { useContext, useState } from 'react'
-import { AddressContext } from '../../contexts/AddressContext'
-import { Link } from 'react-router-dom'
+import React, {useContext, useState} from 'react'
+import {AddressContext} from '../../contexts/AddressContext'
+import {Link, useNavigate} from 'react-router-dom'
+import "./NewAddress.css"
+import {AddNewAddressForm} from './components/AddNewAddressForm'
+import {RiDeleteBin6Line} from "react-icons/ri"
+import {IoMdArrowRoundBack} from "react-icons/io"
 
 export const NewAddress = () => {
     const {AddressState, handleNewAddress, AddressDispatch} = useContext(AddressContext)
-    const [newAdd,setNewAdd] = useState({
-        name:"",
-        hno:"",
-        city:"",
-        state:"",
-        country:"",
-        pincode:"",
-        phno:"",
-    })
-    const handleAddressInputChange = (e) => {
-        setNewAdd((prev) => ({...prev, [e.target.name] : e.target.value}))
-    }
-  return (
-    <div>
-        {AddressState.map((add) => (
-            <div key={add.id}>
-                <p>{add.address}</p>
-                <p>{add.name}</p>
-                <p>{add.hno}</p>
-                <p>{add.city}</p>
-                <p>{add.state}</p>
-                <p>{add.country}</p>
-                <p>{add.pincode}</p>
-                <p>{add.phno}</p>
-                <button onClick={() => AddressDispatch({type:"deleteAddress",payload:add.id})}>Delete</button>
-            </div>
-        ))}
-        
+    const navigate = useNavigate()
+    return (
         <div>
-            <input type="text" name="name" id="add-name" placeholder='Enter Name' onChange={(e) => handleAddressInputChange(e)} />
-            <input type="text" name="hno" id="add-hno" placeholder='Enter House No. , Street' onChange={(e) => handleAddressInputChange(e)} />
-            <input type="text" name="city" id="add-city" placeholder='Enter City' onChange={(e) => handleAddressInputChange(e)} />
-            <input type="text" name="state" id="add-state" placeholder='Enter State'  onChange={(e) => handleAddressInputChange(e)} />
-            <input type="text" name="country" id="add-country" placeholder='Enter Country'  onChange={(e) => handleAddressInputChange(e)} />
-            <input type="number" name="pincode" id="add-pincode" placeholder='Enter Postal Code'  onChange={(e) => handleAddressInputChange(e)} />
-            <input type="number" name="phno" id="add-phno" placeholder='Enter Mobile Number' onChange={(e) => handleAddressInputChange(e)}  />
-            <button onClick={() => handleNewAddress(newAdd)}>Add new Address</button>
-            <Link to="/address">Go back</Link>
+            <div>
+                <h1 className='add-title'>ADDRESS</h1>
+            </div>
+            <div className='new-entire-add-main-container'>
+                <div>
+                <button onClick={() => navigate("/address")} className='new-add-goback-btn'><IoMdArrowRoundBack /></button>
+                <div className='new-add-form-container'>
+                    <div className='new-add-main-container'>
+                        {AddressState.map((add) => (
+                            <div key={add.id} className='new-add-container'>
+                                <div className='new-add-name-delete-container'>
+                                    <p className='new-add-name'>{add.name}</p>
+                                    <p>
+                                        <button
+                                            onClick={() => AddressDispatch({type: "deleteAddress", payload: add.id})}
+                                            className='new-add-delete-btn'><RiDeleteBin6Line/></button>
+                                    </p>
+                                </div>
+                                <p className='new-add-address'>{add.hno}, {add.city}, {add.state}, {add.country}, {add.pincode}.</p>
+                                <p className='new-add-phno'>Ph No: {add.phno}</p>
+
+                            </div>
+                        ))}
+                    </div>
+                    <div>
+                        <AddNewAddressForm/>
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
-    </div>
-  )
+    )
 }

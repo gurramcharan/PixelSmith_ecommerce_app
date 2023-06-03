@@ -8,11 +8,11 @@ import {CartPage} from "./pages/cart/CartPage";
 import {LoginPage} from "./pages/login-signup/LoginPage";
 import {SignUpPage} from "./pages/login-signup/signup/SignUpPage";
 import { RequiresAuth } from "./components/RequiresAuth";
-import { NotLoginPage } from "./pages/login-signup/NotLoginPage";
 import { ProductDetail } from "./pages/productDetail/ProductDetail";
 import { Navbar } from "./components/navbar/Navbar";
 import { AddressPage } from "./pages/address/AddressPage";
 import { NewAddress } from "./pages/address/NewAddress";
+import { OrderPlacedPage } from "./pages/order-placed/OrderPlacedPage";
 
 
 function App() {
@@ -27,10 +27,10 @@ function App() {
                 <Route path="/cart" element={<RequiresAuth> <CartPage/> </RequiresAuth>} />
                 <Route path="/login" element={< LoginPage />}/>
                 <Route path="/signup" element={< SignUpPage />}/>
-                <Route path="/notlogin" element={< NotLoginPage />}/>
                 <Route path="/address" element={<RequiresAuth> < AddressPage /></RequiresAuth>}/>
                 <Route path="/newaddress" element={<RequiresAuth> < NewAddress /></RequiresAuth>}/>
                 <Route path="/product/:productId" element={< ProductDetail />}/>
+                <Route path="/orderplaced" element={<RequiresAuth><OrderPlacedPage /></RequiresAuth>}/>
             </Routes>
         </div>
     );

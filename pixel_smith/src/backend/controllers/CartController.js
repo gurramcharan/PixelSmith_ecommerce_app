@@ -52,6 +52,8 @@ export const addItemToCartHandler = function (schema, request) {
       updatedAt: formatDate(),
       qty: 1,
     });
+    console.log(userCart,"userCart")
+    console.log(product,"product")
     this.db.users.update({ _id: userId }, { cart: userCart });
     return new Response(201, {}, { cart: userCart });
   } catch (error) {

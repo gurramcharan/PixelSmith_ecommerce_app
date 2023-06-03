@@ -86,7 +86,7 @@ export const AuthProvider = ({children}) => {
     localStorage.removeItem("user")
     authDispatch({type:"setUser",payload:{}})
     authDispatch({type:"setToken", payload:""})
-    productDispatch({ type: "setCart", payload: [] });
+    // productDispatch({ type: "setCart", payload: [] });
 
   }
 
