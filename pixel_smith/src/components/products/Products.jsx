@@ -16,6 +16,7 @@ export const Products = () => {
     const navigate = useNavigate()
 
     const addToCartHandler = (product) => {
+        console.log("click")
         if (isLogged) {
             if (productCheck(productState
                 ?.cart, product
@@ -30,11 +31,12 @@ export const Products = () => {
     }
 
     const addToWishlistHandler = (product) => {
+        console.log("click")
         if (isLogged) {
             if (wishlistCheck(productState
                 ?.wishlist, product
                 ?._id)) {
-                removeProductFromWishlist(productDispatch,product._id)
+                removeProductFromWishlist(productDispatch, product._id)
             } else {
                 addToWishlist(product, productDispatch)
             }
@@ -53,7 +55,7 @@ export const Products = () => {
                                 {wishlistCheck(productState
                                     ?.wishlist, item
                                     ?._id)
-                                    ? (<AiFillHeart className='wishlist-filled-icon' />)
+                                    ? (<AiFillHeart className='wishlist-filled-icon'/>)
                                     : (<AiOutlineHeart/>)}
                             </button>
                         </div>

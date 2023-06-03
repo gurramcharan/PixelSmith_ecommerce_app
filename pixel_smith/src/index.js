@@ -7,10 +7,11 @@ import {BrowserRouter as Router} from "react-router-dom";
 import {ApiProvider, ApiContext} from "./contexts/ApiContext";
 import {AuthContext, AuthProvider} from "./contexts/AuthContext";
 import {FilterProvider, FilterContext} from "./contexts/FiltersContext";
+import {AddressContext, AddressProvider} from "./contexts/AddressContext";
 
 // Call make Server
 makeServer();
-export {ApiContext, AuthContext, FilterContext}
+export {ApiContext, AuthContext, FilterContext, AddressContext}
 
 ReactDOM.render(
     <React.StrictMode>
@@ -18,7 +19,9 @@ ReactDOM.render(
         <ApiProvider>
             <FilterProvider>
                 <AuthProvider>
-                    <App/>
+                    <AddressProvider>
+                        <App/>
+                    </AddressProvider>
                 </AuthProvider>
             </FilterProvider>
         </ApiProvider>

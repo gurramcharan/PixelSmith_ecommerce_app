@@ -40,14 +40,16 @@ export const ApiProvider = ({children}) => {
     }
 
       useEffect(() => {
+
+
         const setCartAndWishlistProduct = async () => {
           try {
             const cartResponse = await getCartProducts(token);
             const wishlistResponse = await getWishlistProducts(token);
             const cartJsonResponse = await cartResponse.json();
             const wishlistJsonResponse = await wishlistResponse.json();
-            console.log(wishlistResponse)
-            console.log(wishlistJsonResponse)
+            // console.log(wishlistResponse)
+            // console.log(wishlistJsonResponse)
             // console.log(cartResponse)
             // console.log(cartJsonResponse,"json...")
             if (cartResponse && cartResponse.status === 200) {
@@ -60,15 +62,22 @@ export const ApiProvider = ({children}) => {
             console.log(err);
           }
         };
+
+        
         const clearCartAndWishlist = () => {
           productDispatch({ type: "setCart", payload: [] });
           productDispatch({ type: "setWishlist", payload: [] });
         };
+
+
+        if(authState?.token){
+          setCartAndWishlistProduct()
+        }
     
         extractProducts();
         extractCategories();
-        !authState?.token && clearCartAndWishlist();
-        authState?.token && setCartAndWishlistProduct();
+        // !authState?.token && clearCartAndWishlist();
+        // authState?.token && setCartAndWishlistProduct();
       }, [productDispatch, authState?.token, token]);
 
     return (

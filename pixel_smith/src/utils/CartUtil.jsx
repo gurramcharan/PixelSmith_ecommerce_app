@@ -25,7 +25,7 @@ export const addToCart = async (item,productDispatch) => {
       body:JSON.stringify({product:item})
     })
     const resJson = await res.json()
-    // console.log("Add to cart: ",resJson);
+    console.log("Add to cart: ",res);
     if(res.status === 201){
       productDispatch({type:"setCart", payload: resJson?.cart})
     }

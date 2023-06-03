@@ -192,7 +192,7 @@ export const FilterProvider = ({children}) => {
 
     const searchFilter = state.search.length > 0 ? allItems.filter((item) => item.title.toLowerCase().includes(state.search.toLowerCase())) : allItems;
 
-    const sortByPriceFilter = state.price === "asc" ? searchFilter.sort((a,b) => a.price - b.price) : state.price === "desc" ? searchFilter.sort((a,b) => b.price - a.price) : searchFilter; 
+    const sortByPriceFilter = state.price === "asc" ? [...searchFilter].sort((a,b) => a.price - b.price) : state.price === "desc" ? [...searchFilter].sort((a,b) => b.price - a.price) : searchFilter; 
 
     const priceRangeFilter = sortByPriceFilter.filter((item) => item.price <= state.priceRange)
 
