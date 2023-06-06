@@ -5,7 +5,7 @@ import "./AddressPage.css"
 import {AddressPagePriceComponent} from './components/AddressPagePriceComponent'
 
 export const AddressPage = () => {
-    const {AddressState, setSelectedAdd} = useContext(AddressContext)
+    const {AddressState, setSelectedAdd, selectAdd} = useContext(AddressContext)
 
     return (
         <div>
@@ -17,7 +17,7 @@ export const AddressPage = () => {
                     {AddressState.map((add) => (
                         <div className='add-main-container'>
                             <div key={add.id} className='add-container'>
-                                <input type="radio" name="address" id={add.id} onClick={() => setSelectedAdd(add)}/>
+                                <input type="radio" name="address" id={add.id} onClick={() => setSelectedAdd(add)} checked={selectAdd.id === add.id } />
                                 <label htmlFor={add.id} className='add-name'>{add.name}</label>
                             </div>
                             <div htmlFor="add.id">

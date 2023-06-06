@@ -18,7 +18,6 @@ export const Products = () => {
     const navigate = useNavigate()
 
     const addToCartHandler = (product) => {
-        console.log("click")
         if (isLogged) {
             if (productCheck(productState
                 ?.cart, product
@@ -39,7 +38,6 @@ export const Products = () => {
     }
 
     const addToWishlistHandler = (product) => {
-        console.log("click")
         if (isLogged) {
             if (wishlistCheck(productState
                 ?.wishlist, product

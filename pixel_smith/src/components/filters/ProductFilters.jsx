@@ -18,7 +18,6 @@ export const ProductFilters = () => {
     } = useContext(FilterContext)
     const {productState} = useContext(ApiContext)
     const {categories} = productState
-    console.log(state)
     return (
         <div>
             <form>
@@ -157,7 +156,6 @@ export const ProductFilters = () => {
                                             ?.subCategory
                                                 ?.map((product) => (
                                                     <div>
-                                                        {console.log(state.categories)}
                                                         <input
                                                             type="checkbox"
                                                             name={product}
@@ -358,7 +356,6 @@ export const ProductFilters = () => {
                             </label>
                         </div>
                         <div>
-                        {console.log(state)}
                             <input
                                 type="checkbox"
                                 name="white"
