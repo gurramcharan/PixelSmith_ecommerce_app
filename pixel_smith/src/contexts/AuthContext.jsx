@@ -2,6 +2,8 @@ import { createContext, useContext, useReducer, useState} from "react";
 import { AuthReducer } from "../reducers/AuthReducer";
 import { useLocation, useNavigate } from "react-router-dom";
 // import { getCartProducts } from "../utils/CartUtil";
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {ApiContext} from "../index"
 
 export const AuthContext = createContext({ isLoggedIn: false });
@@ -26,16 +28,24 @@ export const AuthProvider = ({children}) => {
         }
         const res = await fetch("/api/auth/login", config);
         const resJson = await res.json();
-        console.log(resJson)
         if (res.status === 200) {
+          
           localStorage.setItem("user", JSON.stringify(resJson?.foundUser));
           localStorage.setItem("token",resJson?.encodedToken);
           authDispatch({type:"setUser",payload:resJson?.foundUser})
           authDispatch({type:"setToken",payload:resJson?.encodedToken})
-
-          navigate(
-            location?.state?.from?.pathname ? location?.state?.from?.pathname : "/" 
-          )
+          toast.success('Login Successfull!',{
+            position:"top-center",
+            autoClose:1000,
+            theme:"colored",
+            draggable:true,
+          });
+          setTimeout(() => {
+            navigate(
+              location?.state?.from?.pathname ? location?.state?.from?.pathname : "/" 
+            )
+          },2000)
+          
         } else {
           setErrorMessage(resJson?.errors[0])
         }
@@ -67,11 +77,12 @@ export const AuthProvider = ({children}) => {
       if (res.status === 201) {
           authDispatch({type:"setUser",payload:createdUser})
           authDispatch({type:"setToken",payload:encodedToken})
-
-          // Need to be changed later
-          // localStorage.setItem("user", JSON.stringify(createdUser));
-          // localStorage.setItem("token",encodedToken);
-
+          toast.success('New User Created!',{
+            position:"top-center",
+            autoClose:1000,
+            theme:"colored",
+            draggable:true,
+          });
           navigate("/login")
       }
 
@@ -86,7 +97,13 @@ export const AuthProvider = ({children}) => {
     localStorage.removeItem("user")
     authDispatch({type:"setUser",payload:{}})
     authDispatch({type:"setToken", payload:""})
-    // productDispatch({ type: "setCart", payload: [] });
+    productDispatch({ type: "setCart", payload: [] });
+    toast.error('User Logged Out!',{
+      position:"top-center",
+      autoClose:1000,
+      theme:"colored",
+      draggable:true,
+  });
 
   }
 

@@ -6,6 +6,9 @@ import {BsStarFill} from "react-icons/bs"
 import {ImCross} from "react-icons/im"
 import {BiCartDownload, BiCartAdd} from "react-icons/bi"
 import {addToCart, productCheck} from '../../utils/CartUtil';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {addToWishlist, removeProductFromWishlist, wishlistCheck} from "../../utils/WishlistUtil"
 
 // React component
 export const ProductDetail = () => {
@@ -33,6 +36,39 @@ export const ProductDetail = () => {
                 navigate("/cart");
             } else {
                 addToCart(product, productDispatch)
+                toast.success('Added to cart!',{
+                    position:"top-center",
+                    autoClose:1000,
+                    theme:"colored",
+                    draggable:true,
+                });
+            }
+        } else {
+            navigate("/login")
+        }
+    }
+
+    const addToWishlistHandler = (product) => {
+        console.log("click")
+        if (isLogged) {
+            if (wishlistCheck(productState
+                ?.wishlist, product
+                ?._id)) {
+                removeProductFromWishlist(productDispatch, product._id)
+                toast.error('Removed from wishlist!',{
+                    position:"top-center",
+                    autoClose:1000,
+                    theme:"colored",
+                    draggable:true,
+                });
+            } else {
+                addToWishlist(product, productDispatch)
+                toast.success('Added to wishlist!',{
+                    position:"top-center",
+                    autoClose:1000,
+                    theme:"colored",
+                    draggable:true,
+                });
             }
         } else {
             navigate("/login")
@@ -71,7 +107,13 @@ export const ProductDetail = () => {
                                                 </p>
                                             )}
                                     </button>
-                                    <button className='product-btn-individual'>Add to Wishlist</button>
+                                    <button className='product-btn-individual' onClick={() => addToWishlistHandler(item)}>
+                                {wishlistCheck(productState
+                                    ?.wishlist, item
+                                    ?._id)
+                                    ? ("Remove from Wishlist")
+                                    : ("Add to Wishlist")}
+                            </button>
                                 </div>
                             </div>
                         </div>
@@ -159,6 +201,7 @@ export const ProductDetail = () => {
 
                 </div>
             ))}
+            <ToastContainer limit={4}/>
         </div>
     );
 };

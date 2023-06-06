@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: row;
     margin: 5rem 10rem;
-    /* margin-top: 300px; */
     padding: 3rem;
     gap: 3rem;
     justify-content: space-around;
@@ -14,6 +13,12 @@
     align-items: center;
   }
 
+  .login-container{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: space-between;
+  }
   
   
   .login-h1{
@@ -31,6 +36,8 @@
     display: flex;
     flex-direction: column;
   }
+
+
   
   .login-items {
     display: flex;
@@ -39,7 +46,7 @@
     margin-top: 2rem;
   }
   
-  .login-input {
+  .login-input{
     width: 15rem;
     height: 2.5rem;
     padding: 0.5rem;
@@ -49,10 +56,40 @@
     background-color: #ffffff;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
   }
+
+  .login-inputs-password{
+    width: 15rem;
+    height: 2.5rem;
+    padding: 0.5rem;
+    /* font-size: 16px; */
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+  }
+
+  .password-inputs{
+    border: none;
+    padding: 0.5rem;
+    font-size: 16px;
+    background-color: white;
+  }
+
+  .password-inputs:focus{
+    outline: none;
+  }
+
+  .password-visibility-btn{
+    font-size: 20px;
+  }
   
   .label {
     font-size: 18px;
     color: #353434;
+  }
+
+  .login-Links{
+    font-size: 14px;
   }
   
   .button {
@@ -78,14 +115,52 @@
     outline: none;
   }
 
-
+  .user-details-span{
+    font-weight: 600;
+  }
 
   
 
-  @media screen and (max-width: 1024px){
+  @media screen and (max-width: 880px){
     .container{
         flex-direction: column;
         margin: 5rem 3rem;
         height: auto;
+    }
+
+    .login-h1{
+      font-size: 35px;
+    }
+
+    .login-p{
+      font-size: 15px;
+    }
+
+    .login-container{
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .login-input,.login-inputs-password{
+      width: 10rem;
+      height: 2rem;
+      font-size: 14px;
+    }
+
+    .login-inputs-password{
+      display: flex;
+    }
+
+    .label{
+      font-size: 16px;
+    }
+
+    .button{
+      height: 2rem;
+      width: 11rem;
+    }
+
+    .login-Links{
+      font-size: 12px;
     }
   }

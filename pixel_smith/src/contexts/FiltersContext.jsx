@@ -124,6 +124,12 @@ export const FilterProvider = ({children}) => {
                     ...state,
                     color: updateColor
                 }
+            case "CATEGORY_INPUT":
+                const filterCategories = (action.payload === "Normal Monitors") ? (["24inch","27inch","29inch","32inch"]) : (["29inchUltrawide","34inchUltrawide"])
+                return({
+                    ...state,
+                    categories:filterCategories
+                })
             case "CLEAR_ALL":
                 setPriceRangeValue(70000);
                 // setAllMonitors(product)
@@ -183,6 +189,11 @@ export const FilterProvider = ({children}) => {
 
     const handleColorInput = (e) => {
         dispatch({type: "COLOR_INPUT", payload: e.target.value})
+    }
+
+    const handleCategoryClicked = (categoryName) => {
+        console.log("buhahahh",categoryName)
+        dispatch({type:"CATEGORY_INPUT",payload:categoryName})
     }
 
     const [state,
@@ -317,7 +328,9 @@ export const FilterProvider = ({children}) => {
             handleBrandInput,
             handleMountTypeInput,
             handleColorInput,
+            handleCategoryClicked,
             filteredProducts,
+            state,
         }}>
             {children}
         </FilterContext.Provider>

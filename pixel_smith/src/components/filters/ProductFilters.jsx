@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import "./ProductFilters.css"
-import {FilterContext} from '../..'
+import {ApiContext, FilterContext} from '../..'
 import {FaTrash} from "react-icons/fa"
 export const ProductFilters = () => {
     const {
@@ -13,8 +13,11 @@ export const ProductFilters = () => {
         handleRatingInput,
         handleBrandInput,
         handleMountTypeInput,
-        handleColorInput
+        handleColorInput,
+        state
     } = useContext(FilterContext)
+    const {productState} = useContext(ApiContext)
+    const {categories} = productState
     return (
         <div>
             <form>
@@ -138,58 +141,25 @@ export const ProductFilters = () => {
                             </label>
                         </div>
                         <div>
-                            <input
-                                type="checkbox"
-                                name="24inch"
-                                id="24-inch"
-                                value="24inch"
-                                onClick={(e) => handleCategoriesInput(e)}/>
-                            <label htmlFor="24-inch">24 Inch</label>
-                        </div>
-                        <div>
-                            <input
-                                type="checkbox"
-                                name="27inch"
-                                id="27-inch"
-                                value="27inch"
-                                onClick={(e) => handleCategoriesInput(e)}/>
-                            <label htmlFor="27-inch">27 Inch</label>
-                        </div>
-                        <div>
-                            <input
-                                type="checkbox"
-                                name="29inch"
-                                id="29-inch"
-                                value="29inch"
-                                onClick={(e) => handleCategoriesInput(e)}/>
-                            <label htmlFor="29-inch">29 Inch</label>
-                        </div>
-                        <div>
-                            <input
-                                type="checkbox"
-                                name="32inch"
-                                id="32-inch"
-                                value="32inch"
-                                onClick={(e) => handleCategoriesInput(e)}/>
-                            <label htmlFor="32-inch">32 Inch</label>
-                        </div>
-                        <div>
-                            <input
-                                type="checkbox"
-                                name="29inchUltrawide"
-                                id="29-inch-ultrawide"
-                                value="29inchUltrawide"
-                                onClick={(e) => handleCategoriesInput(e)}/>
-                            <label htmlFor="29-inch-ultrawide">29 Inch Ultrawide</label>
-                        </div>
-                        <div>
-                            <input
-                                type="checkbox"
-                                name="34inchUltrawide"
-                                id="34-inch-ultrawide"
-                                value="34inchUltrawide"
-                                onClick={(e) => handleCategoriesInput(e)}/>
-                            <label htmlFor="34-inch-ultrawide">34 Inch Ultrawide</label>
+                            {categories
+                                ?.map((item) => (
+                                    <div>
+                                        {item
+                                            ?.subCategory
+                                                ?.map((product) => (
+                                                    <div>
+                                                        <input
+                                                            type="checkbox"
+                                                            name={product}
+                                                            id={product}
+                                                            value={product}
+                                                            onClick={(e) => handleCategoriesInput(e)}
+                                                        />
+                                                        <label htmlFor={product}>{product}</label>
+                                                    </div>
+                                                ))}
+                                    </div>
+                                ))}
                         </div>
                     </div>
                     <div

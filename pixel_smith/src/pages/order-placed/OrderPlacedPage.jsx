@@ -4,12 +4,27 @@ import {v4 as uuid} from "uuid";
 import {getPriceDetails} from '../../utils/getPriceDetails';
 import {ApiContext} from '../../contexts/ApiContext';
 import {AddressContext} from '../../contexts/AddressContext';
+import { useNavigate } from 'react-router-dom';
+import { removeProductFromCart } from '../../utils/CartUtil';
+import {toast, ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const OrderPlacedPage = () => {
-    const {productState} = useContext(ApiContext)
+    const {productState,productDispatch} = useContext(ApiContext)
     const {selectAdd} = useContext(AddressContext)
     const {cart} = productState
     const {totalPrice, discount, delivery, discountPrice} = getPriceDetails(cart)
+    const navigate = useNavigate()
+    setTimeout(() => {
+        toast.success('Added to wishlist!',{
+            position:"top-center",
+            autoClose:1000,
+            theme:"colored",
+            draggable:true,
+        });
+        productDispatch({ type: "setCart", payload: [] });
+        navigate("/")
+    },5000)
     return (
         <div>
             <div>
@@ -55,6 +70,7 @@ export const OrderPlacedPage = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     )
 }
