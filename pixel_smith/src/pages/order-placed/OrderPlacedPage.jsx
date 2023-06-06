@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { removeProductFromCart } from '../../utils/CartUtil';
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
 
 export const OrderPlacedPage = () => {
     const {productState,productDispatch} = useContext(ApiContext)
@@ -15,16 +16,21 @@ export const OrderPlacedPage = () => {
     const {cart} = productState
     const {totalPrice, discount, delivery, discountPrice} = getPriceDetails(cart)
     const navigate = useNavigate()
-    setTimeout(() => {
-        toast.success('Added to wishlist!',{
-            position:"top-center",
-            autoClose:1000,
-            theme:"colored",
-            draggable:true,
+
+    useEffect(() => {
+        toast.success('Order Placed! Redirectoring to home page', {
+            position: "top-center",
+            autoClose: 1800,
+            theme: "colored",
+            draggable: true
         });
-        productDispatch({ type: "setCart", payload: [] });
+    })
+
+    setTimeout(() => {
+        productDispatch({type:"setCart",payload:[]})
         navigate("/")
-    },5000)
+    },2700)
+
     return (
         <div>
             <div>
