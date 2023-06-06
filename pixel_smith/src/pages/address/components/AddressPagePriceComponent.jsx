@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import {useContext} from 'react'
 import {AddressContext, ApiContext} from "../../../index"
 import "./AddressPagePriceComponent.css"
@@ -61,5 +61,3 @@ export const AddressPagePriceComponent = () => {
         </div>
     )
 }
-
-// {discountPrice ? discountPrice : "0"}

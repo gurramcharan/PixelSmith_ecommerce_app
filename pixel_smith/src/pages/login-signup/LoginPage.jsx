@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react'
 import "./LoginPage.css"
 import {Link} from "react-router-dom";
 import {AuthContext} from '../../index';
-import {ToastContainer, toast} from 'react-toastify';
+import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {FaUserAlt} from "react-icons/fa"
 

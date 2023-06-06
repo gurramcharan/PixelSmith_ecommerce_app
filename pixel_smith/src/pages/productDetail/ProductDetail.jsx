@@ -11,7 +11,6 @@ import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {addToWishlist, removeProductFromWishlist, wishlistCheck} from "../../utils/WishlistUtil"
 
-// React component
 export const ProductDetail = () => {
     const {productId} = useParams();
     const {productState, productDispatch} = useContext(ApiContext)

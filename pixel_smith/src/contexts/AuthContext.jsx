@@ -2,7 +2,7 @@ import { createContext, useContext, useReducer, useState} from "react";
 import { AuthReducer } from "../reducers/AuthReducer";
 import { useLocation, useNavigate } from "react-router-dom";
 // import { getCartProducts } from "../utils/CartUtil";
-import {ToastContainer, toast} from 'react-toastify';
+import { toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {ApiContext} from "../index"
 
@@ -52,7 +52,6 @@ export const AuthProvider = ({children}) => {
       } catch (error) {
         userLogout();
         console.log(error.message)
-        setErrorMessage(error.message)
       }
     }
   }

@@ -122,7 +122,6 @@
     display: flex;
     justify-content: space-between;
     gap: 0.5rem;
-    /* position: fixed; */
     bottom: 0;
     background-color: #EAE0DA;
     color: #27374D;

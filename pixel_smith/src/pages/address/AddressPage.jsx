@@ -1,11 +1,11 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext} from 'react'
 import {AddressContext} from '../../index'
 import {Link} from 'react-router-dom'
 import "./AddressPage.css"
 import {AddressPagePriceComponent} from './components/AddressPagePriceComponent'
 
 export const AddressPage = () => {
-    const {AddressState, setSelectedAdd, selectAdd} = useContext(AddressContext)
+    const {AddressState, setSelectedAdd} = useContext(AddressContext)
 
     return (
         <div>

@@ -1,13 +1,13 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext} from 'react'
 import {AddressContext} from '../../contexts/AddressContext'
-import {Link, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import "./NewAddress.css"
 import {AddNewAddressForm} from './components/AddNewAddressForm'
 import {RiDeleteBin6Line} from "react-icons/ri"
 import {IoMdArrowRoundBack} from "react-icons/io"
 
 export const NewAddress = () => {
-    const {AddressState, handleNewAddress, AddressDispatch} = useContext(AddressContext)
+    const {AddressState,AddressDispatch} = useContext(AddressContext)
     const navigate = useNavigate()
     return (
         <div>

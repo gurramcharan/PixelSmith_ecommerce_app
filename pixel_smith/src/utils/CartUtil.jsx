@@ -7,7 +7,6 @@ export const getCartProducts = async (encodedToken) => {
       const res = await fetch("/api/user/cart", {
         headers: { authorization: encodedToken },
       });
-      // console.log(await res.json())
       if (res.status === 200) {
         return res;
       }
@@ -25,7 +24,6 @@ export const addToCart = async (item,productDispatch) => {
       body:JSON.stringify({product:item})
     })
     const resJson = await res.json()
-    console.log("Add to cart: ",res);
     if(res.status === 201){
       productDispatch({type:"setCart", payload: resJson?.cart})
     }
@@ -43,7 +41,6 @@ export const handleProductQuantity = async (productDispatch,productId,type) => {
       body:JSON.stringify({action:{type}}),
     })
     const resJson = await res.json();
-    // console.log(res.Json)
     if (res.status === 200) {
       productDispatch({type:"setCart", payload:resJson?.cart})
     }
@@ -60,7 +57,6 @@ export const removeProductFromCart = async (productDispatch,productId) => {
       headers:{authorization: token},
     })
     const resJson = await res.json();
-    // console.log(resJson)
     if (res.status === 200) {
       productDispatch({type:"setCart",payload:resJson?.cart})
     }

@@ -11,7 +11,6 @@ export const getWishlistProducts = async (encodedToken) => {
             method:"GET",
             headers: {authorization: encodedToken}
         })
-        console.log(await res.json())
         if (res.status === 200) {
             return res;
         }
@@ -29,7 +28,6 @@ export const addToWishlist = async (item,productDispatch) => {
             body:JSON.stringify({product:item})
         })
         const resJson = await res.json()
-        // console.log("Add to wishlist: ", resJson);
         if(res.status === 201){
             productDispatch({type:"setWishlist",payload:resJson?.wishlist})
         }
@@ -46,7 +44,6 @@ export const removeProductFromWishlist = async (productDispatch, productId) => {
             headers:{authorization:token},
         })
         const resJson = await res.json()
-        console.log("Remove from wishlist",resJson)
         if (res.status === 200) {
             productDispatch({type:"setWishlist",payload:resJson?.wishlist})
         }

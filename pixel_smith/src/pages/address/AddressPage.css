@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     gap: 3rem;
-    /* flex-wrap: wrap-reverse; */
 }
 
 .add-title{

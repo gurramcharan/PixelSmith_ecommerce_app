@@ -1,14 +1,10 @@
 import {createContext, useContext, useReducer, useState} from "react";
 import {ApiContext} from "../index"
-// import { FilterReducer } from "../reducers/FilterReducer";
-// import { categories } from "../backend/db/categories"; import {
-// FilterProductsReducer } from "../reducers/FilterProductsReducer";
 
 export const FilterContext = createContext();
 
 export const FilterProvider = ({children}) => {
     const {productState} = useContext(ApiContext)
-    // const pd = productState.products
     
     const [searchBarValue,
         setSearchBarValue] = useState("");
@@ -132,7 +128,6 @@ export const FilterProvider = ({children}) => {
                 })
             case "CLEAR_ALL":
                 setPriceRangeValue(70000);
-                // setAllMonitors(product)
                 return ({
                     ...state,
                     search:"",
@@ -192,7 +187,6 @@ export const FilterProvider = ({children}) => {
     }
 
     const handleCategoryClicked = (categoryName) => {
-        console.log("buhahahh",categoryName)
         dispatch({type:"CATEGORY_INPUT",payload:categoryName})
     }
 

@@ -15,20 +15,12 @@ export const SignUpPage = () => {
     const [rePasswordType,
         setRePasswordType] = useState("password")
 
-    // const [toggleIcon,
-    //     setToggleIcon] = useState("visibility_off");
-
-    // const [toggleReIcon,
-    //     setToggleReIcon] = useState("visibility_off");
-
     
     const togglePassword = () => {
         if (passwordType === "password") {
             setPasswordType("text")
-            // setToggleIcon("visibility")
         } else {
             setPasswordType("password")
-            // setToggleIcon("visibility_off")
         }
     }
 
@@ -39,10 +31,8 @@ export const SignUpPage = () => {
     const toggleRePassword = () => {
         if (rePasswordType === "password") {
             setRePasswordType("text")
-            // setToggleReIcon("visibility")
         } else {
             setRePasswordType("password")
-            // setToggleReIcon("visibility_off")
         }
     }
     return (
