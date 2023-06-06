@@ -6,6 +6,8 @@ import {AiOutlinePlus, AiOutlineMinus} from "react-icons/ai"
 import {RiDeleteBin6Line} from "react-icons/ri"
 import {FaRupeeSign} from "react-icons/fa"
 import {wishlistCheck} from '../../../utils/WishlistUtil'
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import "./CartProducts.css"
 import {addToWishlist} from '../../../utils/WishlistUtil'
@@ -28,7 +30,23 @@ export const CartProducts = () => {
         } else {
             addToWishlist(product, productDispatch);
             removeProductFromCart(productDispatch, product._id)
+            toast.success('Added to wishlist!',{
+                position:"top-center",
+                autoClose:1000,
+                theme:"colored",
+                draggable:true,
+            });
         }
+    }
+
+    const handleRemoveProductFromCart = (id) => {
+        removeProductFromCart(productDispatch, id)
+        toast.error('Removed from Cart!',{
+            position:"top-center",
+            autoClose:1000,
+            theme:"colored",
+            draggable:true,
+        });
     }
 
     return (
@@ -81,7 +99,7 @@ export const CartProducts = () => {
                                 </button>
                                 <button
                                     className='cart-btn'
-                                    onClick={() => removeProductFromCart(productDispatch, item._id)}><RiDeleteBin6Line className='cart-delete-icon'/>Remove</button>
+                                    onClick={() => handleRemoveProductFromCart(item._id)}><RiDeleteBin6Line className='cart-delete-icon'/>Remove</button>
                             </div>
                         </div>
                     </div>

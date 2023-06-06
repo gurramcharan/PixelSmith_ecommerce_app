@@ -6,6 +6,8 @@ import {RiDeleteBin6Line} from "react-icons/ri";
 import {BiCartAdd, BiCartDownload} from "react-icons/bi";
 import {addToCart, productCheck} from "../../utils/CartUtil"
 import {useNavigate} from 'react-router-dom';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const WishlistPage = () => {
     const {productState, productDispatch} = useContext(ApiContext)
@@ -20,7 +22,23 @@ export const WishlistPage = () => {
             navigate("/cart");
         } else {
             addToCart(product, productDispatch)
+            toast.success('Added to cart!', {
+                position: "top-center",
+                autoClose: 1000,
+                theme: "colored",
+                draggable: true
+            });
         }
+    }
+
+    const handleRemoveFromWishlistBtn = (id) => {
+        removeProductFromWishlist(productDispatch, id)
+        toast.error('Removed from wishlist!',{
+            position:"top-center",
+            autoClose:1000,
+            theme:"colored",
+            draggable:true,
+        });
     }
 
     function calculateDiscountPercentage(price, discountedPrice) {
@@ -95,7 +113,7 @@ export const WishlistPage = () => {
                                         </button>
                                         <button
                                             className='wishlist-remove-btn'
-                                            onClick={() => removeProductFromWishlist(productDispatch, item._id)}><RiDeleteBin6Line className='wishlist-delete-icon'/>Remove
+                                            onClick={() => handleRemoveFromWishlistBtn(item._id)}><RiDeleteBin6Line className='wishlist-delete-icon'/>Remove
                                         </button>
                                     </div>
                                 </div>
@@ -104,14 +122,8 @@ export const WishlistPage = () => {
                     </div>
                 )
 }
+            <ToastContainer limit={4}/>
         </div>
     )
 }
 
-{/* <p onClick={() => removeProductFromWishlist(productDispatch, item._id)}><RiDeleteBin6Line/></p> */
-}
-
-{/* <div className='wishlist-remove-btn'>
-                                    <p onClick={() => removeProductFromWishlist(productDispatch, item._id)}><RiDeleteBin6Line/></p>
-                                </div> */
-}

@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react'
 import "../LoginPage.css"
 import {Link} from "react-router-dom";
 import {AuthContext} from '../../../contexts/AuthContext';
+import {MdVisibilityOff, MdVisibility} from "react-icons/md"
 
 export const SignUpPage = () => {
     const {signUpUser} = useContext(AuthContext);
@@ -88,29 +89,33 @@ export const SignUpPage = () => {
                 <div className='flex-column'>
 
                     <label htmlFor="passoword" className='label'>Enter your Password*</label>
+                    <div  className='login-inputs-password'>
                     <input
                         type={passwordType}
                         name="password"
                         value={signupData.password}
                         id="login-input-password"
-                        className='login-input'
+                        className='password-inputs'
                         onChange={(e) => setSignupData(prev => ({...prev,password:e.target.value}))}
                         placeholder='password'/>
-                    <button onClick={togglePassword}>visible</button>
+                    <button className='password-inputs password-visibility-btn' onClick={togglePassword}>{passwordType === "text" ? <MdVisibility /> : <MdVisibilityOff />}</button>
+                    </div>
                 </div>
                 <div className='flex-column'>
 
                     <label htmlFor="Re-passoword" className='label'>Enter your password again*</label>
-                    <input
-                        type={rePasswordType}
-                        name="Re-password"
-                        id="login-input-repassword"
-                        className='login-input'
-                        placeholder='Re-enter Password'/>
-                    <button onClick={toggleRePassword}>visible</button>
+                    <div className='login-inputs-password'>
+                        <input
+                            type={rePasswordType}
+                            name="Re-password"
+                            id="login-input-repassword"
+                            className='password-inputs'
+                            placeholder='Re-enter Password'/>
+                        <button className='password-inputs password-visibility-btn' onClick={toggleRePassword}>{rePasswordType === "text" ? <MdVisibility /> : <MdVisibilityOff />}</button>
+                    </div>
                 </div>
                 <button className='button' onClick={handleSignUp}>Sign Up</button>
-                <p>Already have an account?
+                <p className='login-Links'>Already have an account?
                     <Link to="/login">Log In</Link>
                 </p>
             </div>

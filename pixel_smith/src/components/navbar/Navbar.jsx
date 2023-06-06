@@ -5,6 +5,7 @@ import {FaRegHeart, FaHeart} from "react-icons/fa";
 import { RiShoppingCart2Fill,RiShoppingCart2Line } from "react-icons/ri";
 import { IoPersonOutline,IoPerson } from "react-icons/io5";
 import { BsHandbag, BsFillHandbagFill } from "react-icons/bs";
+import logo from "../../assets/logo.jpeg"
 
 export const Navbar= () => {
   return (
@@ -14,7 +15,7 @@ export const Navbar= () => {
                     <NavLink
                         to="/"
                         className="nav-link nav-link-left"
-                        >PixelSmith</NavLink>
+                        ><img src={logo} alt="Img" className='nav-logo-img' /> PixelSmith</NavLink>
                 </div>
                 <div className="nav-items-right">
                     <NavLink

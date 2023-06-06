@@ -4,6 +4,8 @@ import {ApiContext} from '../..'
 import "./CartPage.css"
 import {CartProducts} from '../../components/cart/Cart-product/CartProducts'
 import {CartProductPrice} from '../../components/cart/Cart-price/CartProductPrice'
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const CartPage = () => {
     const {productState} = useContext(ApiContext)
@@ -33,6 +35,7 @@ export const CartPage = () => {
                     </div>
 
                 )}
+                <ToastContainer/>
         </div>
     )
 }
