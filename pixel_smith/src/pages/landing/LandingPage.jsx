@@ -7,6 +7,7 @@ import {ImGithub} from "react-icons/im"
 import {FaTwitter} from "react-icons/fa"
 import {GrLinkedin} from "react-icons/gr"
 import {BiCopyright} from "react-icons/bi"
+import {TbWorldWww} from "react-icons/tb"
 
 export const LandingPage = () => {
     const navigate = useNavigate()
@@ -64,9 +65,10 @@ export const LandingPage = () => {
                     </div>
                     <div className="footer-links">
                         <p className="footer-links-connect">Connect</p>
-                        <a href="https://github.com/gurramcharan" className="connect-links"><ImGithub /> GitHub</a>
-                        <a href="https://twitter.com/gurram_charan3" className="connect-links"><FaTwitter /> Twitter</a>
-                        <a href="https://www.linkedin.com/in/gurram-venkata-sai-siva-charan-974212221/" className="connect-links"><GrLinkedin /> LinkedIn</a>
+                        <a href="https://github.com/gurramcharan" target="blank" className="connect-links"><ImGithub /> GitHub</a>
+                        <a href="https://twitter.com/gurram_charan3" target="blank" className="connect-links"><FaTwitter /> Twitter</a>
+                        <a href="https://www.linkedin.com/in/gurram-venkata-sai-siva-charan-974212221/" target="blank" className="connect-links"><GrLinkedin /> LinkedIn</a>
+                        <a href="https://sivacharan.netlify.app/" target="blank" className="connect-links"><TbWorldWww /> PortFolio</a>
                     </div>
                 </div>
             </div>
