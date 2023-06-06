@@ -15,25 +15,25 @@ export const Navbar= () => {
                     <NavLink
                         to="/"
                         className="nav-link nav-link-left"
-                        ><img src={logo} alt="Img" className='nav-logo-img' /> PixelSmith</NavLink>
+                        ><img src={logo} alt="Img" className='nav-logo-img' /> ℙ𝕚𝕩𝕖𝕝 𝕊𝕞𝕚𝕥𝕙</NavLink>
                 </div>
                 <div className="nav-items-right">
                     <NavLink
                         to="/products"
-                        className="nav-link"
-                        >{({ isActive }) => isActive ? <BsFillHandbagFill className='icon-large' />: <BsHandbag className='icon-large'  />}</NavLink>
+                        className="nav-link nav-products"
+                        >{({ isActive }) => isActive ? <BsFillHandbagFill />: <BsHandbag   />}</NavLink>
                     <NavLink
                         to="/wishlist"
-                        className="nav-link"
-                        >{({ isActive }) => isActive ? <FaHeart className='icon-large' />: <FaRegHeart className='icon-large'  />}</NavLink>
+                        className="nav-link  nav-wishlist"
+                        >{({ isActive }) => isActive ? <FaHeart/>: <FaRegHeart/>}</NavLink>
                     <NavLink
                         to="/cart"
-                        className="nav-link"
-                        >{({ isActive }) => isActive ? <RiShoppingCart2Fill className='icon-large' />: <RiShoppingCart2Line className='icon-large'  />}</NavLink>
+                        className="nav-link  nav-cart"
+                        >{({ isActive }) => isActive ? <RiShoppingCart2Fill/>: <RiShoppingCart2Line />}</NavLink>
                     <NavLink
                         to="/login"
-                        className="nav-link"
-                        >{({ isActive }) => isActive ? <IoPerson  className='icon-large' />: <IoPersonOutline className='icon-large'  />}</NavLink>
+                        className="nav-link  nav-profile"
+                        >{({ isActive }) => isActive ? <IoPerson />: <IoPersonOutline />}</NavLink>
                 </div>
             </nav>
             <div className='nav-below-container'></div>

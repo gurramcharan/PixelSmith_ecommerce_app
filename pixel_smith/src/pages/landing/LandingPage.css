@@ -124,8 +124,8 @@
     gap: 0.5rem;
     /* position: fixed; */
     bottom: 0;
-    background-color: grey;
-    color: white;
+    background-color: #EAE0DA;
+    color: #27374D;
 }
 
 .footer-sub-container{
@@ -170,7 +170,7 @@
 
 .connect-links{
     text-decoration: none;
-    color: white;
+    color: #27374D;
 }
 
 @media screen and (max-width:880px) {

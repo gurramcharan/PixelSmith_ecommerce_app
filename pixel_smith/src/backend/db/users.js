@@ -17,6 +17,3 @@ export const users = [
     updatedAt: formatDate(),
   },
 ];
-
-//adarshbalika@gmail.com
-//adarshbalika

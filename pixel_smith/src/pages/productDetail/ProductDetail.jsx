@@ -3,8 +3,9 @@ import {useParams, Link, useNavigate} from 'react-router-dom'
 import {ApiContext, FilterContext} from '../../index'
 import "./ProductDetail.css"
 import {BsStarFill} from "react-icons/bs"
-import {ImCross} from "react-icons/im"
+import {ImCross,ImTicket} from "react-icons/im"
 import {BiCartDownload, BiCartAdd} from "react-icons/bi"
+import {GoPrimitiveDot} from "react-icons/go"
 import {addToCart, productCheck} from '../../utils/CartUtil';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -36,11 +37,11 @@ export const ProductDetail = () => {
                 navigate("/cart");
             } else {
                 addToCart(product, productDispatch)
-                toast.success('Added to cart!',{
-                    position:"top-center",
-                    autoClose:1000,
-                    theme:"colored",
-                    draggable:true,
+                toast.success('Added to cart!', {
+                    position: "top-center",
+                    autoClose: 1000,
+                    theme: "colored",
+                    draggable: true
                 });
             }
         } else {
@@ -55,19 +56,19 @@ export const ProductDetail = () => {
                 ?.wishlist, product
                 ?._id)) {
                 removeProductFromWishlist(productDispatch, product._id)
-                toast.error('Removed from wishlist!',{
-                    position:"top-center",
-                    autoClose:1000,
-                    theme:"colored",
-                    draggable:true,
+                toast.error('Removed from wishlist!', {
+                    position: "top-center",
+                    autoClose: 1000,
+                    theme: "colored",
+                    draggable: true
                 });
             } else {
                 addToWishlist(product, productDispatch)
-                toast.success('Added to wishlist!',{
-                    position:"top-center",
-                    autoClose:1000,
-                    theme:"colored",
-                    draggable:true,
+                toast.success('Added to wishlist!', {
+                    position: "top-center",
+                    autoClose: 1000,
+                    theme: "colored",
+                    draggable: true
                 });
             }
         } else {
@@ -107,13 +108,15 @@ export const ProductDetail = () => {
                                                 </p>
                                             )}
                                     </button>
-                                    <button className='product-btn-individual' onClick={() => addToWishlistHandler(item)}>
-                                {wishlistCheck(productState
-                                    ?.wishlist, item
-                                    ?._id)
-                                    ? ("Remove from Wishlist")
-                                    : ("Add to Wishlist")}
-                            </button>
+                                    <button
+                                        className='product-btn-individual'
+                                        onClick={() => addToWishlistHandler(item)}>
+                                        {wishlistCheck(productState
+                                            ?.wishlist, item
+                                            ?._id)
+                                            ? ("Remove from Wishlist")
+                                            : ("Add to Wishlist")}
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -167,31 +170,42 @@ export const ProductDetail = () => {
 
                                 <hr/>
 
-                                <p className="product-company">Company: {item.company}</p>
-                                <p className="product-seller">Sold By: {item.seller}</p>
+                                <div className='product-flex-row'>
+                                    <p className="product-company">Company:</p>
+                                    <p className='product-flex-details'>{item.company}</p>
+                                </div>
 
-                                <p className="product-warranty">Warranty: {item.warranty}</p>
+                                <div  className='product-flex-row'>
+                                    <p className="product-seller">Sold By:</p>
+                                    <p className='product-flex-details'>{item.seller}</p>
+                                </div>
+
+                                <div  className='product-flex-row'>
+                                    <p className="product-warranty">Warranty:</p>
+                                    <p className='product-flex-details'>{item.warranty}</p>
+                                </div>
+
                                 {item
                                     .features
                                     .map((feature, index) => (
                                         <div key={index} className="product-feature">
-                                            <p>{feature}</p>
+                                            <p><ImTicket /> {feature}</p>
                                         </div>
                                     ))}
                                 <div className="product-stock-details">
 
-                                    {item.fastDelivery && <p className="fast-delivery">Fast Delivery</p>}
-                                    {item.table && <p className="table-mount">TableTop Mounting</p>}
-                                    {item.wallMount && <p className="wall-mount">Wall Mountable</p>}
+                                    {item.fastDelivery && <p className="fast-delivery"><GoPrimitiveDot /> Fast Delivery</p>}
+                                    {item.table && <p className="table-mount"><GoPrimitiveDot /> TableTop Mounting</p>}
+                                    {item.wallMount && <p className="wall-mount"><GoPrimitiveDot /> Wall Mountable</p>}
                                 </div>
                                 <div className="product-options">
-                                    <p className="option-tilt">Tilt: {item.tilt
+                                    <p className="option-tilt"><span className='opiton-spans'> Tilt: </span>{item.tilt
                                             ? 'yes'
                                             : 'no'}</p>
-                                    <p className="option-rotation">Vertical Rotation: {item.verticalRotation
+                                    <p className="option-rotation"><span className='opiton-spans'> Vertical Rotation: </span>{item.verticalRotation
                                             ? 'yes'
                                             : 'no'}</p>
-                                    <p className="option-adjustable">Height Adjustable: {item.heightAdjustable
+                                    <p className="option-adjustable"><span className='opiton-spans'> Height Adjustable: </span>{item.heightAdjustable
                                             ? 'yes'
                                             : 'no'}</p>
                                 </div>

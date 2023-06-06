@@ -65,6 +65,12 @@ export const Products = () => {
         }
     }
 
+    function calculateDiscountPercentage(price, discountedPrice) {
+        const discount = price - discountedPrice;
+        const discountPercentage = (discount / price) * 100;
+        return Math.round(discountPercentage);
+    }
+
     return (
         <div className='products-container'>
             {filteredProducts.map((item) => (
@@ -80,12 +86,42 @@ export const Products = () => {
                             </button>
                         </div>
                         <Link to={`/product/${item._id}`} className='link'>
-                            <img src={item.img} alt={item.title} width="250px" height="200px"/>
-                            <p>{item.title}</p>
-                            <p>{item.category}</p>
-                            <p>Rs. {item.price}</p>
-                            <p>Brand: {item.company}</p>
-                            <p>Sold By: {item.seller}</p>
+                            <img src={item.img} alt={item.title} className='products-img' />
+                            <div>
+                                <div>
+                                    <p>{item.title}</p>
+                                </div>
+                                <div>
+                                    <p className='products-category'>{item.category}</p>
+                                </div>
+                                <div>
+                                    {item.discountProduct?(
+                                        <div className='products-price-container'>
+                                            <p className='products-price-heading'>Price: </p>
+                                            <p className="discount-prices">
+                                                    {item.discountPrice}{' '}
+                                                    <span className="discount-percentage">
+                                                        {calculateDiscountPercentage(item.price, item.discountPrice)}% off
+                                                    </span>
+                                                </p>
+                                                
+                                        </div>
+                                    ):(
+                                        <div className='products-price-container'>
+                                            <p className='products-price-heading'>Price: </p>
+                                            <p className="original-prices">{item.price}</p>
+                                        </div>
+                                    )}
+                                </div>
+                                <div className='products-flex-row'>
+                                    <p>Color:</p>
+                                    <p>{item.color}</p>
+                                </div>
+                                <div className='products-flex-row'>
+                                    <p>Brand</p>
+                                    <p>{item.company.toUpperCase()}</p>
+                                </div>
+                            </div>
                         </Link>
                         <div className='flex-row product-btn-container'>
                             <button

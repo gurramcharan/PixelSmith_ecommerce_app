@@ -14,7 +14,6 @@ export const ProductFilters = () => {
         handleBrandInput,
         handleMountTypeInput,
         handleColorInput,
-        state
     } = useContext(FilterContext)
     const {productState} = useContext(ApiContext)
     const {categories} = productState

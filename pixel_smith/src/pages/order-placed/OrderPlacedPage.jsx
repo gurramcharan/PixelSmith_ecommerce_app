@@ -14,11 +14,11 @@ export const OrderPlacedPage = () => {
     const {productState,productDispatch} = useContext(ApiContext)
     const {selectAdd} = useContext(AddressContext)
     const {cart} = productState
-    const {totalPrice, discount, delivery, discountPrice} = getPriceDetails(cart)
+    const {discountPrice} = getPriceDetails(cart)
     const navigate = useNavigate()
 
     useEffect(() => {
-        toast.success('Order Placed! Redirectoring to home page', {
+        toast.success('Order Placed! Redirecting to home page', {
             position: "top-center",
             autoClose: 1800,
             theme: "colored",
@@ -27,7 +27,9 @@ export const OrderPlacedPage = () => {
     })
 
     setTimeout(() => {
-        productDispatch({type:"setCart",payload:[]})
+        for(let i=0;i<cart.length;i++){
+            removeProductFromCart(productDispatch,cart[i]._id)
+        }
         navigate("/")
     },2700)
 

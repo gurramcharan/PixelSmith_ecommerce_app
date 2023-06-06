@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import {AuthContext} from '../../index';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {FaUserAlt} from "react-icons/fa"
 
 export const LoginPage = () => {
     const [userData,
@@ -82,7 +83,7 @@ export const LoginPage = () => {
             ):(
                 <>
                     <div>
-                        <h1 className='login-h1'>User Details</h1>
+                        <h1 className='login-h1'><FaUserAlt /> User Details</h1>
                         <p className='login-p'><span className='user-details-span'>Name:</span> {user.firstName} {user.lastName}</p>
                         <p className='login-p'><span className='user-details-span'>Email-id:</span> {user.email}</p>
                         
