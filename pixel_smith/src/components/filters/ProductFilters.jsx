@@ -14,9 +14,11 @@ export const ProductFilters = () => {
         handleBrandInput,
         handleMountTypeInput,
         handleColorInput,
+        state,
     } = useContext(FilterContext)
     const {productState} = useContext(ApiContext)
     const {categories} = productState
+    console.log(state)
     return (
         <div>
             <form>
@@ -34,7 +36,9 @@ export const ProductFilters = () => {
                                 name="priceLH"
                                 id="priceHL"
                                 value="desc"
-                                onClick={(e) => handlePriceInput(e)}/>
+                                onClick={(e) => handlePriceInput(e)}
+                                checked={state.price === "desc"} 
+                                />
                             <label htmlFor="priceHL">High to Low</label>
                         </div>
                         <div>
@@ -43,7 +47,9 @@ export const ProductFilters = () => {
                                 name="priceLH"
                                 id="priceLH"
                                 value="asc"
-                                onClick={(e) => handlePriceInput(e)}/>
+                                onClick={(e) => handlePriceInput(e)}
+                                checked={state.price === "asc"} 
+                                />
                             <label htmlFor="priceLH">Low to High</label>
                         </div>
                     </div>
@@ -65,7 +71,8 @@ export const ProductFilters = () => {
                                 list='tickmark'
                                 onChange={(e) => {
                                 handlePriceRangeInput(e)
-                            }}/>
+                            }}
+                            checked={state.range === priceRangeValue} />
                             <datalist id="tickmark">
                                 <option value="10000" label='10000'></option>
                                 <option value="15000"></option>
@@ -106,7 +113,8 @@ export const ProductFilters = () => {
                                     name="outOfStock"
                                     id="out-of-stock"
                                     value="outOfStock"
-                                    onClick={(e) => handleAvailabilityInput(e)}/>
+                                    onClick={(e) => handleAvailabilityInput(e)}
+                                    checked={state.availability.includes("outOfStock")} />
                                 <label htmlFor="out-of-stock">Out of Stock</label>
                             </div>
                             <div>
@@ -115,7 +123,8 @@ export const ProductFilters = () => {
                                     name="fastDelivery"
                                     id="fast-delivery"
                                     value="fastDelivery"
-                                    onClick={(e) => handleAvailabilityInput(e)}/>
+                                    onClick={(e) => handleAvailabilityInput(e)}
+                                    checked={state.availability.includes("fastDelivery")} />
                                 <label htmlFor="fast-delivery">Fast Delivery</label>
                             </div>
                             <div>
@@ -124,7 +133,8 @@ export const ProductFilters = () => {
                                     name="discountProducts"
                                     id="discount-products"
                                     value="discountProduct"
-                                    onClick={(e) => handleAvailabilityInput(e)}/>
+                                    onClick={(e) => handleAvailabilityInput(e)}
+                                    checked={state.availability.includes("discountProduct")} />
                                 <label htmlFor="discount-products">Discounted Products</label>
                             </div>
                         </div>
@@ -147,12 +157,15 @@ export const ProductFilters = () => {
                                             ?.subCategory
                                                 ?.map((product) => (
                                                     <div>
+                                                        {console.log(state.categories)}
                                                         <input
                                                             type="checkbox"
                                                             name={product}
                                                             id={product}
                                                             value={product}
                                                             onClick={(e) => handleCategoriesInput(e)}
+                                                            checked={state.categories.includes(product)}
+
                                                         />
                                                         <label htmlFor={product}>{product}</label>
                                                     </div>
@@ -177,7 +190,8 @@ export const ProductFilters = () => {
                                 name="rating"
                                 id="5-star-rating"
                                 value="5star"
-                                onClick={(e) => handleRatingInput(e)}/>
+                                onClick={(e) => handleRatingInput(e)}
+                                checked={state.rating === "5star"}/>
                             <label htmlFor="5-star-rating">5 star & below</label>
                         </div>
                         <div>
@@ -186,7 +200,8 @@ export const ProductFilters = () => {
                                 name="rating"
                                 id="4.5-star-rating"
                                 value="4.5star"
-                                onClick={(e) => handleRatingInput(e)}/>
+                                onClick={(e) => handleRatingInput(e)}
+                                checked={state.rating === "4.5star"}/>
                             <label htmlFor="4.5-star-rating">4.5 star & below</label>
                         </div>
                         <div>
@@ -195,7 +210,8 @@ export const ProductFilters = () => {
                                 name="rating"
                                 id="4-star-rating"
                                 value="4star"
-                                onClick={(e) => handleRatingInput(e)}/>
+                                onClick={(e) => handleRatingInput(e)}
+                                checked={state.rating === "4star"}/>
                             <label htmlFor="4-star-rating">4 star & below</label>
                         </div>
                         <div>
@@ -204,7 +220,8 @@ export const ProductFilters = () => {
                                 name="rating"
                                 id="below-3.5-star"
                                 value="3.5starAndBelow"
-                                onClick={(e) => handleRatingInput(e)}/>
+                                onClick={(e) => handleRatingInput(e)}
+                                checked={state.rating === "3.5starAndBelow"}/>
                             <label htmlFor="below-3.5-star">Below 3.5 stars</label>
                         </div>
                     </div>
@@ -224,7 +241,8 @@ export const ProductFilters = () => {
                                 name="samsung"
                                 id="samsung"
                                 value="samsung"
-                                onClick={(e) => handleBrandInput(e)}/>
+                                onClick={(e) => handleBrandInput(e)}
+                                checked={state.brand.includes("samsung")}/>
                             <label htmlFor="samsung">Samsung</label>
                         </div>
                         <div>
@@ -233,7 +251,8 @@ export const ProductFilters = () => {
                                 name="lg"
                                 id="lg"
                                 value="lg"
-                                onClick={(e) => handleBrandInput(e)}/>
+                                onClick={(e) => handleBrandInput(e)}
+                                checked={state.brand.includes("lg")}/>
                             <label htmlFor="lg">LG</label>
                         </div>
                         <div>
@@ -242,7 +261,8 @@ export const ProductFilters = () => {
                                 name="acer"
                                 id="acer"
                                 value="acer"
-                                onClick={(e) => handleBrandInput(e)}/>
+                                onClick={(e) => handleBrandInput(e)}
+                                checked={state.brand.includes("acer")}/>
                             <label htmlFor="acer">Acer</label>
                         </div>
                         <div>
@@ -251,7 +271,8 @@ export const ProductFilters = () => {
                                 name="zebronics"
                                 id="zebronics"
                                 value="zebronics"
-                                onClick={(e) => handleBrandInput(e)}/>
+                                onClick={(e) => handleBrandInput(e)}
+                                checked={state.brand.includes("zebronics")}/>
                             <label htmlFor="zebronics">Zebronics</label>
                         </div>
                         <div>
@@ -260,7 +281,8 @@ export const ProductFilters = () => {
                                 name="benq"
                                 id="benq"
                                 value="benq"
-                                onClick={(e) => handleBrandInput(e)}/>
+                                onClick={(e) => handleBrandInput(e)}
+                                checked={state.brand.includes("benq")}/>
                             <label htmlFor="benq">Benq</label>
                         </div>
                     </div>
@@ -280,7 +302,8 @@ export const ProductFilters = () => {
                                 name="table"
                                 id="table-top"
                                 value="tableTop"
-                                onClick={(e) => handleMountTypeInput(e)}/>
+                                onClick={(e) => handleMountTypeInput(e)}
+                                checked={state.mountType.includes("tableTop")}/>
                             <label htmlFor="table-top">Table Top</label>
                         </div>
                         <div>
@@ -289,7 +312,8 @@ export const ProductFilters = () => {
                                 name="wallMount"
                                 id="wall-mount"
                                 value="wallMount"
-                                onClick={(e) => handleMountTypeInput(e)}/>
+                                onClick={(e) => handleMountTypeInput(e)}
+                                checked={state.mountType.includes("wallMount")}/>
                             <label htmlFor="wall-mount">Wall Mount</label>
                         </div>
                         <div>
@@ -298,7 +322,8 @@ export const ProductFilters = () => {
                                 name="tilt"
                                 id="tilt"
                                 value="tilt"
-                                onClick={(e) => handleMountTypeInput(e)}/>
+                                onClick={(e) => handleMountTypeInput(e)}
+                                checked={state.mountType.includes("tilt")}/>
                             <label htmlFor="tilt">Tilt</label>
                         </div>
                         <div>
@@ -307,7 +332,8 @@ export const ProductFilters = () => {
                                 name="verticalRotation"
                                 id="vertical-rotation"
                                 value="verticalRotation"
-                                onClick={(e) => handleMountTypeInput(e)}/>
+                                onClick={(e) => handleMountTypeInput(e)}
+                                checked={state.mountType.includes("verticalRotation")}/>
                             <label htmlFor="vertical-rotation">Vertical Rotation</label>
                         </div>
                         <div>
@@ -316,7 +342,8 @@ export const ProductFilters = () => {
                                 name="heightAdjustable"
                                 id="height-adjustable"
                                 value="heightAdjustable"
-                                onClick={(e) => handleMountTypeInput(e)}/>
+                                onClick={(e) => handleMountTypeInput(e)}
+                                checked={state.mountType.includes("heightAdjustable")}/>
                             <label htmlFor="height-adjustable">Height Adjustable</label>
                         </div>
                     </div>
@@ -331,13 +358,17 @@ export const ProductFilters = () => {
                             </label>
                         </div>
                         <div>
+                        {console.log(state)}
                             <input
                                 type="checkbox"
                                 name="white"
                                 id="white"
                                 value="white"
-                                onClick={(e) => handleColorInput(e)}/>
+                                onClick={(e) => handleColorInput(e)}
+                                checked={state.color.includes("white")}/>
+                                
                             <label htmlFor="white">White</label>
+
                         </div>
                         <div>
                             <input
@@ -345,7 +376,8 @@ export const ProductFilters = () => {
                                 name="silver"
                                 id="silver"
                                 value="silver"
-                                onClick={(e) => handleColorInput(e)}/>
+                                onClick={(e) => handleColorInput(e)}
+                                checked={state.color.includes("silver")}/>
                             <label htmlFor="silver">Silver</label>
                         </div>
                         <div>
@@ -354,7 +386,8 @@ export const ProductFilters = () => {
                                 name="black"
                                 id="black"
                                 value="black"
-                                onClick={(e) => handleColorInput(e)}/>
+                                onClick={(e) => handleColorInput(e)}
+                                checked={state.color.includes("black")}/>
                             <label htmlFor="black">Black</label>
                         </div>
                     </div>
