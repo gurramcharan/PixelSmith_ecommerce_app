@@ -121,7 +121,7 @@
 .footer-container{
     display: flex;
     justify-content: space-between;
-    gap: 0.5rem;
+    gap: 2rem;
     bottom: 0;
     background-color: #EAE0DA;
     color: #27374D;
@@ -140,6 +140,7 @@
 .footer-description{
     font-size: 18px;
     font-weight: 200;
+    text-align: justify;
 }
 
 .footer-copyright{

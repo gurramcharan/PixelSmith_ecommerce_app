@@ -58,7 +58,7 @@ export const LandingPage = () => {
                 <div className="footer-container">
                     <div className="footer-sub-container">
                         <p className="footer-title">PixelSmith</p>
-                        <p className="footer-description">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- An ecommerce app built with ReactJs and MirageJs. This app showcases the wide range of monitors which helps to unleash your way of achieving your best desktop setup.</p>
+                        <p className="footer-description">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- An ecommerce app built with ReactJs and MirageJs. This app showcases the wide range of monitors which helps to unleash your way of achieving your best desktop setup.</p>
                         <p className="footer-description">Privacy Policy</p>
                         <p className="footer-description">Terms of Use</p>
                         <p className="footer-copyright"><BiCopyright className="copyright-icon" /> PixelSmith2023</p>

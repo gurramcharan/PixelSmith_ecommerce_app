@@ -69,7 +69,7 @@
     flex-direction: row;
     width: auto;
     height: auto;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     font-size: 14px;
   }
   .filters-clear-btn{
@@ -77,10 +77,6 @@
   }
   .filters-container::-webkit-scrollbar {
     height: 5px; /* Set the height of the scrollbar */
-  }
-
-  .price-clear-container{
-    flex-direction: column;
   }
 }
 
